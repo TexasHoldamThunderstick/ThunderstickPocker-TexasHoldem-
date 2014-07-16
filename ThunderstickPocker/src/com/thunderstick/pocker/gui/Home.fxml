@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thunderstick.pocker.gui.HomeController">
+   <children>
+      <Label layoutX="236.0" layoutY="39.0" prefHeight="34.0" prefWidth="156.0" text="Texas Holdam" textFill="#0a9719">
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant color="#328354" />
+               </light>
+            </Lighting>
+         </effect>
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnExit" layoutX="240.0" layoutY="305.0" mnemonicParsing="false" onAction="#btnExitclick" prefHeight="34.0" prefWidth="143.0" text="Exit">
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant color="#9463d0" />
+               </light>
+            </Lighting>
+         </effect>
+      </Button>
+      <Button fx:id="btnSettings" layoutX="240.0" layoutY="255.0" mnemonicParsing="false" onAction="#btnSettingsclick" prefHeight="34.0" prefWidth="143.0" text="Settings">
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant color="#cd12aa" />
+               </light>
+            </Lighting>
+         </effect>
+      </Button>
+      <Button fx:id="btnTutorial" layoutX="240.0" layoutY="206.0" mnemonicParsing="false" onAction="#btnTutorialclick" prefHeight="34.0" prefWidth="143.0" text="Tutorial">
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant color="#bed320" />
+               </light>
+            </Lighting>
+         </effect>
+      </Button>
+      <Button fx:id="btnMultiplayer" layoutX="240.0" layoutY="155.0" mnemonicParsing="false" onAction="#btnMultiplayerclick" prefHeight="34.0" prefWidth="143.0" text="Multiplayer">
+         <effect>
+            <Lighting specularConstant="0.74" specularExponent="16.74" surfaceScale="2.09">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant color="#e80e0e" />
+               </light>
+            </Lighting>
+         </effect>
+      </Button>
+      <Button fx:id="btnSingleplayer" layoutX="240.0" layoutY="107.0" mnemonicParsing="false" onAction="#btnSingleplayerclick" prefHeight="34.0" prefWidth="143.0" text="Single Player">
+         <effect>
+            <Lighting specularConstant="0.6">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant color="#24f82e" />
+               </light>
+            </Lighting>
+         </effect>
+      </Button>
+   </children>
+</AnchorPane>

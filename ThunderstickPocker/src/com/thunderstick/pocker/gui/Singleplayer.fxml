@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thunderstick.pocker.gui.SingleplayerController">
+   <children>
+      <Label layoutX="223.0" layoutY="14.0" prefHeight="33.0" prefWidth="135.0" text="Single Player">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <RadioButton layoutX="187.0" layoutY="249.0" mnemonicParsing="false" />
+      <RadioButton layoutX="309.0" layoutY="249.0" mnemonicParsing="false" />
+      <RadioButton layoutX="187.0" layoutY="169.0" mnemonicParsing="false" />
+      <RadioButton layoutX="309.0" layoutY="169.0" mnemonicParsing="false" />
+      <Label layoutX="106.0" layoutY="160.0" text="Pick a Image" />
+      <ImageView fitHeight="66.0" fitWidth="79.0" layoutX="210.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/Resources/1.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="66.0" fitWidth="79.0" layoutX="335.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/Resources/2.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="66.0" fitWidth="79.0" layoutX="210.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/Resources/3.png" />
+         </image>
+      </ImageView>
+      <TextField layoutX="239.0" layoutY="81.0" prefHeight="32.0" prefWidth="149.0" />
+      <Label layoutX="158.0" layoutY="81.0" prefHeight="32.0" prefWidth="70.0" text="Name">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="66.0" fitWidth="79.0" layoutX="335.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/Resources/4.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="232.0" layoutY="333.0" mnemonicParsing="false" text="Play" />
+      <Button layoutX="304.0" layoutY="333.0" mnemonicParsing="false" text="Close" />
+   </children>
+</AnchorPane>
