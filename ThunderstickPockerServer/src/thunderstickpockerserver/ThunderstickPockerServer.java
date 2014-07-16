@@ -6,6 +6,8 @@
 
 package thunderstickpockerserver;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -17,7 +19,9 @@ public class ThunderstickPockerServer {
 
     static int users=1;
     static String userNo="";
+    static boolean registerAllowed=true;
     
+
     
     public static void main(String[] args) {
         
@@ -33,20 +37,34 @@ public class ThunderstickPockerServer {
                Socket SOCK=SERVER.accept();
                
                //allow only 4  players
-               if(users==1){
-                   userNo="player1";
-               }
-              else if(users==2){
-                   userNo="player2";
-               }
-               else if(users==3){
-                   userNo="player2";
-               }
-               else if(users==4){
-                   userNo="player2";
-               }
-               else{
-                   userNo="error";
+               if(registerAllowed){
+                    if(users==1){
+                        userNo="player1";
+                        registerAllowed=true;
+                        users++;
+                      
+                        
+                    }
+                   else if(users==2){
+                        userNo="player2";
+                        registerAllowed=true;
+                        users++;
+                    }
+                    else if(users==3){
+                        userNo="player2";
+                        registerAllowed=true;
+                        users++;
+                    }
+                    else if(users==4){
+                        userNo="player2";
+                        registerAllowed=true;
+                        users++;
+                    }
+                    else{
+                        userNo="error";
+                        registerAllowed=false;
+                        System.out.println("No more players");
+                    }
                }
               
                
