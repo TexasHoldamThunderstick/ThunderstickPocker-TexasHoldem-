@@ -61,6 +61,12 @@ public class Player implements Runnable {
                     else if(MESSAGE.contains("sayBay")){
                         sayBay();
                     }
+                    else if(MESSAGE.contains("getName")){
+                        getName();
+                    }
+                    else if(MESSAGE.contains("getCoins")){
+                        getCoins();
+                    }
                     else{
                         System.out.println("unknown method");
                     }
@@ -85,7 +91,15 @@ public class Player implements Runnable {
         System.out.println(Name + "   Says Bayyyyy");
         out.writeUTF(("function Bay done"));
     }
+    
+    public void getName() throws IOException{
+        out.writeUTF((Name.toString()));
+    }
 
+    public void getCoins() throws IOException{
+        out.writeUTF((Coins+""));
+        Coins=Coins-100;
+    }
     
 
 }
