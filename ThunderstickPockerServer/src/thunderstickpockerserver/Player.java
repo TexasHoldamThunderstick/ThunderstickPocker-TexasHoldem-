@@ -5,9 +5,14 @@
  */
 package thunderstickpockerserver;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -20,9 +25,8 @@ public class Player implements Runnable {
     int Coins;
     Socket socketInfo;
 
-    //to read and send data
-    private Scanner INPUT;
-    private PrintWriter OUT;
+    static DataInputStream inp;
+    static DataOutputStream out;
     
     String MESSAGE="";
 
@@ -32,20 +36,24 @@ public class Player implements Runnable {
         Name = name;
         Coins = c;
         ImageNumber = in;
-
+        try {
+            inp=new DataInputStream((socketInfo.getInputStream()));
+            out=new DataOutputStream((socketInfo.getOutputStream()));
+        } catch (IOException ex) {
+            Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
     @Override
     public void run() {
         try {
             try {
-                INPUT = new Scanner(socketInfo.getInputStream());
-                OUT = new PrintWriter(socketInfo.getOutputStream());
-                
+
                 while (true) {
                     //code here
-                    if(!INPUT.hasNext()){return;}
-                    MESSAGE=INPUT.nextLine();
+                    
+                    MESSAGE=inp.readUTF();
                     
                     if(MESSAGE.contains("sayHello")){
                         sayHello();
@@ -62,18 +70,20 @@ public class Player implements Runnable {
                 socketInfo.close();
             }
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e+"hi");
         }
 
     }
 
     /*      Functions here    */
-    public void sayHello() {
+    public void sayHello() throws IOException {
         System.out.println("Hello guyz my name is :" + Name);
+        out.writeUTF(("function Hello done"));
     }
 
-    public void sayBay() {
+    public void sayBay() throws IOException {
         System.out.println(Name + "   Says Bayyyyy");
+        out.writeUTF(("function Bay done"));
     }
 
     
