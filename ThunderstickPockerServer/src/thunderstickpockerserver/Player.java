@@ -18,15 +18,16 @@ import java.util.logging.Logger;
  *
  * @author tawsoft
  */
-public class Player implements Runnable {
+public class Player {
 
     String Name;
     String ImageNumber;
     int Coins;
     Socket socketInfo;
+    
 
-    static DataInputStream inp;
-    static DataOutputStream out;
+     DataInputStream inp;
+     DataOutputStream out;
     
     String MESSAGE="";
 
@@ -43,43 +44,9 @@ public class Player implements Runnable {
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        
     }
     
-    @Override
-    public void run() {
-        try {
-            try {
-
-                while (true) {
-                    //code here
-                    
-                    MESSAGE=inp.readUTF();
-                    
-                    if(MESSAGE.contains("sayHello")){
-                        sayHello();
-                    }
-                    else if(MESSAGE.contains("sayBay")){
-                        sayBay();
-                    }
-                    else if(MESSAGE.contains("getName")){
-                        getName();
-                    }
-                    else if(MESSAGE.contains("getCoins")){
-                        getCoins();
-                    }
-                    else{
-                        System.out.println("unknown method");
-                    }
-                    
-                }
-            } finally {
-                socketInfo.close();
-            }
-        } catch (Exception e) {
-            System.out.println(e+"hi");
-        }
-
-    }
 
     /*      Functions here    */
     public void sayHello() throws IOException {
@@ -101,5 +68,14 @@ public class Player implements Runnable {
         Coins=Coins-100;
     }
     
+    public DataInputStream getDataInputStream(){
+        
+        return inp;
+    }
+    
+     public DataOutputStream getDataOutputStream(){
+         
+        return out;
+    }
 
 }

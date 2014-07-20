@@ -11,6 +11,9 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.HashMap;
+import static jdk.nashorn.internal.objects.NativeArray.map;
+import static jdk.nashorn.internal.objects.NativeDebug.map;
 
 /**
  *
@@ -22,6 +25,8 @@ public class ThunderstickPockerServer {
     static String userNo="";
     static boolean registerAllowed=true;
     
+   public static HashMap hm = new HashMap();
+    
 
     
     public static void main(String[] args) {
@@ -32,50 +37,65 @@ public class ThunderstickPockerServer {
             
             System.out.println("Waiting for clients...");
             
+            
+            
             while(true){
-               Socket SOCK=SERVER.accept();
-               
+
                //allow only 4  players
                if(registerAllowed){
+                   Socket SOCK=SERVER.accept();
                     if(users==1){
                         userNo="player1";
                         registerAllowed=true;
                         users++;
                       
                         Player pla=new Player(SOCK, userNo, userNo, 200);
-                        Thread X=new Thread(pla);
+                        ThreadHandler th=new ThreadHandler(pla,userNo);
+                        Thread X=new Thread(th);
                         X.start();
+                        
+                        hm.put("player1", pla);
+                        
                     }
                    else if(users==2){
                         userNo="player2";
                         registerAllowed=true;
                         users++;
                         Player pla=new Player(SOCK, userNo, userNo, 200);
-                        Thread X=new Thread(pla);
+                        ThreadHandler th=new ThreadHandler(pla,userNo);
+                        Thread X=new Thread(th);
                         X.start();
+                        
+                        hm.put("player2", pla);
                     }
                     else if(users==3){
                         userNo="player3";
                         registerAllowed=true;
                         users++;
+                        
                         Player pla=new Player(SOCK, userNo, userNo, 200);
-                        Thread X=new Thread(pla);
+                        ThreadHandler th=new ThreadHandler(pla,userNo);
+                        Thread X=new Thread(th);
                         X.start();
+                        hm.put("player3", pla);
                     }
                     else if(users==4){
                         userNo="player4";
                         registerAllowed=true;
                         users++;
                         Player pla=new Player(SOCK, userNo, userNo, 200);
-                        Thread X=new Thread(pla);
+                        ThreadHandler th=new ThreadHandler(pla,userNo);
+                        Thread X=new Thread(th);
                         X.start();
+                        
+                        hm.put("player4", pla);
                     }
                     else{
                         userNo="error";
-                        registerAllowed=false;
+                        registerAllowed=true;
                         System.out.println("No more players");
-                       DataOutputStream out=new DataOutputStream((SOCK.getOutputStream()));
-                       out.writeUTF("no more users");
+                        DataOutputStream out=new DataOutputStream((SOCK.getOutputStream()));
+                        out.writeUTF("no more users");
                     }
                }
               
@@ -84,7 +104,7 @@ public class ThunderstickPockerServer {
         }
           catch(Exception e)
         {
-            System.out.println(e+"hi");
+            System.out.println(e);
         }
            
     }
