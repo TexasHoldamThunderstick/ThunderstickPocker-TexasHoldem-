@@ -46,7 +46,7 @@
             <Image url="@/Resources/4.png" />
          </image>
       </ImageView>
-      <Button layoutX="232.0" layoutY="333.0" mnemonicParsing="false" text="Play" />
+      <Button fx:id="btnplay" layoutX="232.0" layoutY="333.0" mnemonicParsing="false" onAction="#btnplayclick" text="Play" />
       <Button layoutX="304.0" layoutY="333.0" mnemonicParsing="false" text="Close" />
    </children>
 </AnchorPane>
