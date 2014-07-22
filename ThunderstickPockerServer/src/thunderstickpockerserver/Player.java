@@ -26,10 +26,12 @@ public class Player {
     Socket socketInfo;
     
 
-     DataInputStream inp;
-     DataOutputStream out;
+    DataInputStream inp;
+    DataOutputStream out;
     
     String MESSAGE="";
+    
+    boolean Alive=true;
 
     public Player(Socket s, String name, String in, int c) {
 
@@ -47,21 +49,15 @@ public class Player {
         
     }
     
-
-    /*      Functions here    */
-    public void sayHello() throws IOException {
-        System.out.println("Hello guyz my name is :" + Name);
-        out.writeUTF(("function Hello done"));
+   public String getName() throws IOException{
+        
+       return Name;
     }
-
-    public void sayBay() throws IOException {
-        System.out.println(Name + "   Says Bayyyyy");
-        out.writeUTF(("function Bay done"));
-    }
-    
-    public void getName() throws IOException{
-        out.writeUTF((Name.toString()));
-    }
+   
+   public String getImageNumber(){
+       
+       return ImageNumber;
+   }
 
     public void getCoins() throws IOException{
         out.writeUTF((Coins+""));
@@ -77,5 +73,19 @@ public class Player {
          
         return out;
     }
+     
+     public boolean updateCoins(int coin,String type){
+         if(type.contentEquals("inc")){
+             Coins=Coins+coin;
+         }
+         else{
+             Coins=Coins+coin;
+         }
+         
+         if(Coins>0){Alive=true;}
+         else{Alive=false;}
+         
+         return Alive;
+     }
 
 }

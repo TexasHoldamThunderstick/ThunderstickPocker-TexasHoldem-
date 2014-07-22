@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 /**
  *
  * @author tawsoft
@@ -23,7 +24,11 @@ public class ThreadHandler implements Runnable {
     DataInputStream inp;
     DataOutputStream out;
 
-    boolean p1=true, p2=true, p3=true, p4=true;
+    static boolean p1 = true, p2 = true, p3 = true, p4 = true;
+
+    static boolean gameNotExit = true;
+    
+    
 
     public ThreadHandler(Player pla, String na) {
         pl = pla;
@@ -33,189 +38,73 @@ public class ThreadHandler implements Runnable {
     @Override
     public void run() {
         while (true) {
-
+            
+            //Start region player 1
             if (mapName.contains("player1")) {
-                 Player pla = (Player) ThunderstickPockerServer.hm.get("player1");
-                    inp = pla.getDataInputStream();
-                    out = pla.getDataOutputStream();
-               
-                    while (true) {
+                
+                Player pla = (Player) ThunderstickPockerServer.hm.get("player1");
+                inp = pla.getDataInputStream();
+                out = pla.getDataOutputStream();
 
-                        if(p1){
-                        try {
+                while (true) {
 
-                            String Message = inp.readUTF();
+                    if (p1) {
 
-                            if (Message.contains("fold")) {
-
-                                System.out.println(pla.Name + " is out");
-                                out.writeUTF("you are out");
-                                p1 = false;
-
-                            }
-                            else if(Message.contains("raise")){
-                                System.out.println(pla.Name + " is raised");
-                                out.writeUTF("you have raise");
-                            }
-                            else if(Message.contains("check")){
-                                System.out.println(pla.Name + " said check");
-                                out.writeUTF("you have checked");
-                            }
-                            else{
-                                System.out.println("no idea");
-                                out.writeUTF("no idea");
-                            }
-                        } catch (IOException ex) {
-                            System.out.println(ex.toString());
-                        }
-                        }
-                        else{
+                        if (pla.Coins > 0) {
                             try {
-                               
-                                out.writeUTF("you are out wait");
+
+                                String Message = inp.readUTF();
+
+                                if (Message.contains("fold")) {
+
+                                    System.out.println(pla.Name + " is out");
+                                    out.writeUTF("you are out");
+                                    p1 = false;
+
+                                } else if (Message.contains("raise")) {
+                                    
+                                    System.out.println(pla.Name + " is raised");
+                                    
+                                    out.writeUTF("you have raise");
+                                    
+                                } else if (Message.contains("check")) {
+                                    
+                                    System.out.println(pla.Name + " said check");
+                                    
+                                    pla.getCoins();
+                                    //out.writeUTF("you have checked");
+                                }
+                                else if(Message.contains("call")){
+                                    
+                                    System.out.println(pla.Name + " said call");
+                                }
+                                else {
+                                    System.out.println("no idea");
+                                    out.writeUTF("no idea");
+                                }
                             } catch (IOException ex) {
-                                Logger.getLogger(ThreadHandler.class.getName()).log(Level.SEVERE, null, ex);
+                                System.out.println(ex.toString());
                             }
+                        } else {
+                            p1=false;
                         }
-
-                    }
-              
-            } else if (mapName.contains("player2")) {
-                Player pla = (Player) ThunderstickPockerServer.hm.get("player2");
-                    inp = pla.getDataInputStream();
-                    out = pla.getDataOutputStream();
-               
-                    while (true) {
-
-                        if(p2){
+                    } else {
                         try {
-
-                            String Message = inp.readUTF();
-
-                            if (Message.contains("fold")) {
-
-                                System.out.println(pla.Name + " is out");
-                                out.writeUTF("you are out");
-                                p2 = false;
-
-                            }
-                            else if(Message.contains("raise")){
-                                System.out.println(pla.Name + " is raised");
-                                out.writeUTF("you have raise");
-                            }
-                            else if(Message.contains("check")){
-                                System.out.println(pla.Name + " said check");
-                                out.writeUTF("you have check");
-                            }
-                            else{
-                                System.out.println("no idea");
-                                out.writeUTF("no idea");
-                            }
+                            
+                            out.writeUTF("you are out wait");
+                            
                         } catch (IOException ex) {
-                            System.out.println(ex.toString());
+                            Logger.getLogger(ThreadHandler.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                        }
-                        else{
-                            try {
-                               
-                                out.writeUTF("you are out wait");
-                            } catch (IOException ex) {
-                                Logger.getLogger(ThreadHandler.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        }
-
                     }
-            } else if (mapName.contains("player3")) {
-              Player pla = (Player) ThunderstickPockerServer.hm.get("player3");
-                    inp = pla.getDataInputStream();
-                    out = pla.getDataOutputStream();
-               
-                    while (true) {
 
-                        if(p3){
-                        try {
+                }
 
-                            String Message = inp.readUTF();
-
-                            if (Message.contains("fold")) {
-
-                                System.out.println(pla.Name + " is out");
-                                out.writeUTF("you are out");
-                                p3 = false;
-
-                            }
-                            else if(Message.contains("raise")){
-                                System.out.println(pla.Name + " is raised");
-                                out.writeUTF("you have raise");
-                            }
-                            else if(Message.contains("check")){
-                                System.out.println(pla.Name + " said check");
-                                out.writeUTF("you have check");
-                            }
-                            else{
-                                System.out.println("no idea");
-                                out.writeUTF("no idea");
-                            }
-                        } catch (IOException ex) {
-                            System.out.println(ex.toString());
-                        }
-                        }
-                        else{
-                            try {
-                               
-                                out.writeUTF("you are out wait");
-                            } catch (IOException ex) {
-                                Logger.getLogger(ThreadHandler.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        }
-
-                    }
-            } else {
-               Player pla = (Player) ThunderstickPockerServer.hm.get("player4");
-                    inp = pla.getDataInputStream();
-                    out = pla.getDataOutputStream();
-               
-                    while (true) {
-
-                        if(p4){
-                        try {
-
-                            String Message = inp.readUTF();
-
-                            if (Message.contains("fold")) {
-
-                                System.out.println(pla.Name + " is out");
-                                out.writeUTF("you are out");
-                                p4 = false;
-
-                            }
-                            else if(Message.contains("raise")){
-                                System.out.println(pla.Name + " is raised");
-                                out.writeUTF("you have raise");
-                            }
-                            else if(Message.contains("check")){
-                                System.out.println(pla.Name + " said check");
-                                out.writeUTF("you have checked");
-                            }
-                            else{
-                                System.out.println("no idea");
-                                out.writeUTF("no idea");
-                            }
-                        } catch (IOException ex) {
-                            System.out.println(ex.toString());
-                        }
-                        }
-                        else{
-                            try {
-                               
-                                out.writeUTF("you are out wait");
-                            } catch (IOException ex) {
-                                Logger.getLogger(ThreadHandler.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        }
-
-                    }
-            }
+            } 
+            //end region player 1
+            
+            
+            
 
         }
 
