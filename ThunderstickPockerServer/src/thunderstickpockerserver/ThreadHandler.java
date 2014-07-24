@@ -46,6 +46,11 @@ public class ThreadHandler implements Runnable {
                 inp = pla.getDataInputStream();
                 out = pla.getDataOutputStream();
 
+                try {
+                    out.writeUTF("player1");
+                } catch (IOException ex) {
+                    Logger.getLogger(ThreadHandler.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 while (true) {
 
                     if (p1) {
@@ -55,33 +60,16 @@ public class ThreadHandler implements Runnable {
 
                                 String Message = inp.readUTF();
 
-                                if (Message.contains("fold")) {
+                                if (Message.contains("check")) {
 
-                                    System.out.println(pla.Name + " is out");
-                                    out.writeUTF("you are out");
-                                    p1 = false;
+                                    
+                                    
 
-                                } else if (Message.contains("raise")) {
+                                } else if (Message.contains("done")) {
                                     
-                                    System.out.println(pla.Name + " is raised");
-                                    
-                                    out.writeUTF("you have raise");
-                                    
-                                } else if (Message.contains("check")) {
-                                    
-                                    System.out.println(pla.Name + " said check");
-                                    
-                                    pla.getCoins();
-                                    //out.writeUTF("you have checked");
-                                }
-                                else if(Message.contains("call")){
-                                    
-                                    System.out.println(pla.Name + " said call");
-                                }
-                                else {
-                                    System.out.println("no idea");
-                                    out.writeUTF("no idea");
-                                }
+                                   
+
+                                } 
                             } catch (IOException ex) {
                                 System.out.println(ex.toString());
                             }
@@ -100,12 +88,160 @@ public class ThreadHandler implements Runnable {
 
                 }
 
-            } 
-            //end region player 1
+            }  //End region player 1         
             
-            
-            
+               //Start region player 2
+            if (mapName.contains("player2")) {
+                
+                Player pla = (Player) ThunderstickPockerServer.hm.get("player2");
+                inp = pla.getDataInputStream();
+                out = pla.getDataOutputStream();
 
+                try {
+                    out.writeUTF("player2");
+                } catch (IOException ex) {
+                    Logger.getLogger(ThreadHandler.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                while (true) {
+
+                    if (p1) {
+
+                        if (pla.Coins > 0) {
+                            try {
+
+                                String Message = inp.readUTF();
+
+                                if (Message.contains("check")) {
+
+                                    
+
+                                } else if (Message.contains("done")) {
+                                    
+                                   
+
+                                } 
+                            } catch (IOException ex) {
+                                System.out.println(ex.toString());
+                            }
+                        } else {
+                            p1=false;
+                        }
+                    } else {
+                        try {
+                            
+                            out.writeUTF("you are out wait");
+                            
+                        } catch (IOException ex) {
+                            Logger.getLogger(ThreadHandler.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+
+                }
+
+            }   
+             //End region player 3
+
+            //Start region player 3
+            if (mapName.contains("player3")) {
+                
+                Player pla = (Player) ThunderstickPockerServer.hm.get("player3");
+                inp = pla.getDataInputStream();
+                out = pla.getDataOutputStream();
+
+                try {
+                    out.writeUTF("player3");
+                } catch (IOException ex) {
+                    Logger.getLogger(ThreadHandler.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                while (true) {
+
+                    if (p1) {
+
+                        if (pla.Coins > 0) {
+                            try {
+
+                                String Message = inp.readUTF();
+
+                                if (Message.contains("check")) {
+
+                                    
+
+                                } else if (Message.contains("done")) {
+                                    
+                                   
+
+                                } 
+                            } catch (IOException ex) {
+                                System.out.println(ex.toString());
+                            }
+                        } else {
+                            p1=false;
+                        }
+                    } else {
+                        try {
+                            
+                            out.writeUTF("you are out wait");
+                            
+                        } catch (IOException ex) {
+                            Logger.getLogger(ThreadHandler.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+
+                }
+
+            }   
+             //End region player 3
+            
+            //Start region player 4
+            if (mapName.contains("player4")) {
+                
+                Player pla = (Player) ThunderstickPockerServer.hm.get("player4");
+                inp = pla.getDataInputStream();
+                out = pla.getDataOutputStream();
+
+                try {
+                    out.writeUTF("player4");
+                } catch (IOException ex) {
+                    Logger.getLogger(ThreadHandler.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                while (true) {
+
+                    if (p1) {
+
+                        if (pla.Coins > 0) {
+                            try {
+
+                                String Message = inp.readUTF();
+
+                                if (Message.contains("check")) {
+
+                                    
+
+                                } else if (Message.contains("done")) {
+                                    
+                                   
+
+                                } 
+                            } catch (IOException ex) {
+                                System.out.println(ex.toString());
+                            }
+                        } else {
+                            p1=false;
+                        }
+                    } else {
+                        try {
+                            
+                            out.writeUTF("you are out wait");
+                            
+                        } catch (IOException ex) {
+                            Logger.getLogger(ThreadHandler.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+
+                }
+
+            }   
+             //End region player 4
         }
 
     }

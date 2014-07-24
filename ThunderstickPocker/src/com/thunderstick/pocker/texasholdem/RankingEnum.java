@@ -1,4 +1,4 @@
-package com.thunderstick.poker.texasholdem;
+package com.thunderstick.pocker.texasholdem;
 
 public enum RankingEnum {
 	HIGH_CARD,

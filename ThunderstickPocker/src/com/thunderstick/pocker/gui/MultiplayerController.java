@@ -6,15 +6,21 @@
 
 package com.thunderstick.pocker.gui;
 
+import com.thunderstick.pocker.Functions.SocketClass;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -30,13 +36,17 @@ public class MultiplayerController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    
+    @FXML
+    TextField txtServerIP;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
     
     public void startGameScreen() throws IOException{
-        AnchorPane pane = (AnchorPane) FXMLLoader.load(MultiplayerController.class.getResource("/com/thunderstick/pocker/gui/Gamescreen.fxml"));
+        AnchorPane pane = (AnchorPane) FXMLLoader.load(MultiplayerController.class.getResource("/com/thunderstick/pocker/gui/Game.fxml"));
             Scene scene = new Scene(pane);
             Stage stage = new Stage();
             stage.setScene(scene);
@@ -45,7 +55,20 @@ public class MultiplayerController implements Initializable {
     }
     
     public void btnLoginclick(ActionEvent e) throws IOException{
+       try{ 
+        Socket socket=new Socket(txtServerIP.getText(),444);
+        SocketClass.setSocket(socket);
+        DataInputStream inp=new DataInputStream(socket.getInputStream());
+        SocketClass.setIn(inp);
+        DataOutputStream out=new DataOutputStream(socket.getOutputStream());
+        SocketClass.setOut(out);
+        
         startGameScreen();
+        ((Node) e.getTarget()).getScene().getWindow().hide();
+       }
+       catch(IOException ex){
+           
+       }
        
     }
 }

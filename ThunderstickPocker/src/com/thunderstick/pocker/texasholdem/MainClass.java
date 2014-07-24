@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.thunderstick.poker.texasholdem;
+package com.thunderstick.pocker.texasholdem;
 
 import java.util.List;
 

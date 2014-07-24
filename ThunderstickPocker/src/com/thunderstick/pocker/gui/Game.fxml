@@ -8,133 +8,132 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="613.0" prefWidth="745.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.thunderstick.pocker.gui.GamescreenController">
+<AnchorPane id="AnchorPane" prefHeight="580.0" prefWidth="731.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thunderstick.pocker.gui.GameController">
    <children>
-      <Pane layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="241.0">
+      <Pane layoutX="14.0" layoutY="14.0" prefHeight="177.0" prefWidth="196.0">
          <children>
-            <ImageView fitHeight="70.0" fitWidth="83.0" layoutX="14.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="p1img" fitHeight="84.0" fitWidth="100.0" layoutX="14.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../../../Desktop/players/1.png" />
+                  <Image url="@/Resources/1.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnp1call" layoutX="14.0" layoutY="79.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="call" />
-            <Button fx:id="btnp1check" layoutX="14.0" layoutY="110.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="check" />
-            <Button fx:id="btnp1fold" layoutX="74.0" layoutY="80.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="fold" />
-            <Button fx:id="btnp1raise" layoutX="74.0" layoutY="109.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="raise" />
-            <Label fx:id="p1message" layoutX="26.0" layoutY="153.0" prefHeight="25.0" prefWidth="103.0" text="message" />
-            <Label fx:id="p1coins" layoutX="115.0" layoutY="21.0" prefHeight="25.0" prefWidth="52.0" text="Coins" />
-            <ImageView fx:id="p1c1" fitHeight="64.0" fitWidth="43.0" layoutX="141.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+            <Button fx:id="btnStartp1" layoutX="14.0" layoutY="87.0" mnemonicParsing="false" onAction="#btnStartp1click" prefHeight="25.0" prefWidth="48.0" text="Start" />
+            <Button fx:id="btncheckp1" layoutX="74.0" layoutY="87.0" mnemonicParsing="false" onAction="#btncheckp1click" text="Check" />
+            <TextField fx:id="txtamountp1" layoutX="14.0" layoutY="118.0" prefHeight="25.0" prefWidth="65.0" promptText="amount" />
+            <Label layoutX="134.0" layoutY="14.0" prefHeight="17.0" prefWidth="57.0" text="Player 1" />
+            <Label layoutX="14.0" layoutY="147.0" prefHeight="25.0" prefWidth="163.0" />
+            <Label fx:id="txtcoinsp1" layoutX="134.0" layoutY="53.0" prefHeight="17.0" prefWidth="48.0" />
+            <ImageView fx:id="p1c1" fitHeight="50.0" fitWidth="32.0" layoutX="118.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../../Desktop/card_12.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="p1c2" fitHeight="64.0" fitWidth="43.0" layoutX="191.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="p1c2" fitHeight="50.0" fitWidth="32.0" layoutX="158.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../../Desktop/card_12.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Ellipse fill="#56ff1f" layoutX="364.0" layoutY="307.0" radiusX="204.0" radiusY="105.0" stroke="BLACK" strokeType="INSIDE" />
-      <Pane layoutX="207.0" layoutY="240.0" prefHeight="147.0" prefWidth="316.0">
+      <Pane layoutX="210.0" layoutY="191.0" prefHeight="177.0" prefWidth="305.0">
          <children>
-            <ImageView fx:id="deckc1" fitHeight="64.0" fitWidth="43.0" layoutX="21.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+            <Ellipse fill="#1fff44" layoutX="143.0" layoutY="89.0" radiusX="196.0" radiusY="80.0" stroke="BLACK" strokeType="INSIDE" />
+            <ImageView fx:id="Dc1" fitHeight="50.0" fitWidth="32.0" layoutX="29.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../../Desktop/card_12.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="deckc2" fitHeight="64.0" fitWidth="43.0" layoutX="76.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="Dc2" fitHeight="50.0" fitWidth="32.0" layoutX="79.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../../Desktop/card_12.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="deckc3" fitHeight="64.0" fitWidth="43.0" layoutX="137.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="Dc3" fitHeight="50.0" fitWidth="32.0" layoutX="127.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../../Desktop/card_12.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="deckc4" fitHeight="64.0" fitWidth="43.0" layoutX="191.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="Dc4" fitHeight="50.0" fitWidth="32.0" layoutX="177.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../../Desktop/card_12.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="deckc5" fitHeight="64.0" fitWidth="43.0" layoutX="244.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="Dc5" fitHeight="50.0" fitWidth="32.0" layoutX="223.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../../Desktop/card_12.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane layoutX="490.0" layoutY="14.0" prefHeight="200.0" prefWidth="241.0">
+      <Pane layoutX="521.0" layoutY="6.0" prefHeight="177.0" prefWidth="196.0">
          <children>
-            <ImageView fitHeight="70.0" fitWidth="83.0" layoutX="14.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="p2img" fitHeight="84.0" fitWidth="100.0" layoutX="14.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../../../Desktop/players/1.png" />
+                  <Image url="@/Resources/2.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnp2call" layoutX="14.0" layoutY="79.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="call" />
-            <Button fx:id="btnp2check" layoutX="14.0" layoutY="110.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="check" />
-            <Button fx:id="btnp2fold" layoutX="74.0" layoutY="80.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="fold" />
-            <Button fx:id="btnp2raise" layoutX="74.0" layoutY="109.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="raise" />
-            <Label fx:id="p2message" layoutX="26.0" layoutY="153.0" prefHeight="25.0" prefWidth="103.0" text="message" />
-            <Label fx:id="p2coins" layoutX="115.0" layoutY="21.0" prefHeight="25.0" prefWidth="52.0" text="Coins" />
-            <ImageView fx:id="p2c1" fitHeight="64.0" fitWidth="43.0" layoutX="141.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+            <Button fx:id="btnStartp2" layoutX="14.0" layoutY="87.0" mnemonicParsing="false" onAction="#btnStartp2click" prefHeight="25.0" prefWidth="48.0" text="Start" />
+            <Button fx:id="btncheckp2" layoutX="74.0" layoutY="87.0" mnemonicParsing="false" onAction="#btncheckp2click" text="Check" />
+            <TextField fx:id="txtamountp2" layoutX="14.0" layoutY="118.0" prefHeight="25.0" prefWidth="65.0" promptText="amount" />
+            <Label layoutX="134.0" layoutY="14.0" prefHeight="17.0" prefWidth="57.0" text="Player 2" />
+            <Label layoutX="14.0" layoutY="147.0" prefHeight="25.0" prefWidth="163.0" />
+            <Label fx:id="txtcoinsp2" layoutX="134.0" layoutY="53.0" prefHeight="17.0" prefWidth="48.0" />
+            <ImageView fx:id="p2c1" fitHeight="50.0" fitWidth="32.0" layoutX="118.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../../Desktop/card_12.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="p2c2" fitHeight="64.0" fitWidth="43.0" layoutX="191.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="p2c2" fitHeight="50.0" fitWidth="32.0" layoutX="158.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../../Desktop/card_12.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane layoutX="490.0" layoutY="399.0" prefHeight="200.0" prefWidth="241.0">
+      <Pane layoutX="521.0" layoutY="381.0" prefHeight="177.0" prefWidth="196.0">
          <children>
-            <ImageView fitHeight="70.0" fitWidth="83.0" layoutX="14.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="p4img" fitHeight="84.0" fitWidth="100.0" layoutX="14.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../../../Desktop/players/1.png" />
+                  <Image url="@/Resources/3.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnp4call" layoutX="14.0" layoutY="79.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="call" />
-            <Button fx:id="btnp4check" layoutX="14.0" layoutY="110.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="check" />
-            <Button fx:id="btnp4fold" layoutX="74.0" layoutY="80.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="fold" />
-            <Button fx:id="btnp4raise" layoutX="74.0" layoutY="109.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="raise" />
-            <Label fx:id="p4message" layoutX="26.0" layoutY="153.0" prefHeight="25.0" prefWidth="103.0" text="message" />
-            <Label fx:id="p4coins" layoutX="115.0" layoutY="21.0" prefHeight="25.0" prefWidth="52.0" text="Coins" />
-            <ImageView fx:id="p4c1" fitHeight="64.0" fitWidth="43.0" layoutX="141.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+            <Button fx:id="btnStartp4" layoutX="14.0" layoutY="87.0" mnemonicParsing="false" onAction="#btnStartp4click" prefHeight="25.0" prefWidth="48.0" text="Start" />
+            <Button fx:id="btncheckp4" layoutX="74.0" layoutY="87.0" mnemonicParsing="false" onAction="#btncheckp4click" text="Check" />
+            <TextField fx:id="txtamountp4" layoutX="14.0" layoutY="118.0" prefHeight="25.0" prefWidth="65.0" promptText="amount" />
+            <Label layoutX="134.0" layoutY="14.0" prefHeight="17.0" prefWidth="57.0" text="Player 4" />
+            <Label layoutX="14.0" layoutY="147.0" prefHeight="25.0" prefWidth="163.0" />
+            <Label fx:id="txtcoinsp4" layoutX="134.0" layoutY="53.0" prefHeight="17.0" prefWidth="48.0" />
+            <ImageView fx:id="p4c2" fitHeight="50.0" fitWidth="32.0" layoutX="118.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../../Desktop/card_12.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="p4c2" fitHeight="64.0" fitWidth="43.0" layoutX="191.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="p4c2" fitHeight="50.0" fitWidth="32.0" layoutX="158.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../../Desktop/card_12.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane layoutX="14.0" layoutY="399.0" prefHeight="200.0" prefWidth="241.0">
+      <Pane layoutX="14.0" layoutY="389.0" prefHeight="177.0" prefWidth="196.0">
          <children>
-            <ImageView fitHeight="70.0" fitWidth="83.0" layoutX="14.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="p3img" fitHeight="84.0" fitWidth="100.0" layoutX="14.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../../../Desktop/players/1.png" />
+                  <Image url="@/Resources/4.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnp3call" layoutX="14.0" layoutY="79.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="call" />
-            <Button fx:id="btnp3check" layoutX="14.0" layoutY="110.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="check" />
-            <Button fx:id="btnp3fold" layoutX="74.0" layoutY="80.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="fold" />
-            <Button fx:id="btnp3raise" layoutX="74.0" layoutY="109.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="raise" />
-            <Label fx:id="p3message" layoutX="26.0" layoutY="153.0" prefHeight="25.0" prefWidth="103.0" text="message" />
-            <Label fx:id="p3coins" layoutX="115.0" layoutY="21.0" prefHeight="25.0" prefWidth="52.0" text="Coins" />
-            <ImageView fx:id="p3c1" fitHeight="64.0" fitWidth="43.0" layoutX="141.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+            <Button fx:id="btnStartp3" layoutX="14.0" layoutY="87.0" mnemonicParsing="false" onAction="#btnStartp3click" prefHeight="25.0" prefWidth="48.0" text="Start" />
+            <Button fx:id="btncheckp3" layoutX="74.0" layoutY="87.0" mnemonicParsing="false" onAction="#btncheckp3click" text="Check" />
+            <TextField fx:id="txtamountp3" layoutX="14.0" layoutY="118.0" prefHeight="25.0" prefWidth="65.0" promptText="amount" />
+            <Label layoutX="134.0" layoutY="14.0" prefHeight="17.0" prefWidth="57.0" text="Player 3" />
+            <Label layoutX="14.0" layoutY="147.0" prefHeight="25.0" prefWidth="163.0" />
+            <Label fx:id="txtcoinsp3" layoutX="134.0" layoutY="53.0" prefHeight="17.0" prefWidth="48.0" />
+            <ImageView fx:id="p3c1" fitHeight="50.0" fitWidth="32.0" layoutX="118.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../../Desktop/card_12.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="p3c2" fitHeight="64.0" fitWidth="43.0" layoutX="191.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="p3c2" fitHeight="50.0" fitWidth="32.0" layoutX="158.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../../Desktop/card_12.png" />
                </image>

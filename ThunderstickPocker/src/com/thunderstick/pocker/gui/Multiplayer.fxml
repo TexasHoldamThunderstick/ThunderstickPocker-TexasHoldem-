@@ -20,9 +20,8 @@
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Label>
-      <Button layoutX="196.0" layoutY="325.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="93.0" text="Create" />
-      <TextField layoutX="196.0" layoutY="291.0" prefHeight="25.0" prefWidth="221.0" promptText="Server IP" />
-      <Button fx:id="btnLogin" layoutX="324.0" layoutY="325.0" mnemonicParsing="false" onAction="#btnLoginclick" prefHeight="26.0" prefWidth="93.0" text="Join" />
+      <TextField fx:id="txtServerIP" layoutX="196.0" layoutY="291.0" prefHeight="25.0" prefWidth="221.0" promptText="Server IP" />
+      <Button fx:id="btnLogin" layoutX="240.0" layoutY="326.0" mnemonicParsing="false" onAction="#btnLoginclick" prefHeight="26.0" prefWidth="93.0" text="Join" />
       <ImageView fitHeight="66.0" fitWidth="79.0" layoutX="213.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@/Resources/1.png" />

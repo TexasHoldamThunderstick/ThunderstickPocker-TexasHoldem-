@@ -1,4 +1,4 @@
-package com.thunderstick.poker.texasholdem;
+package com.thunderstick.pocker.texasholdem;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
