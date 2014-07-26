@@ -88,7 +88,7 @@ public class SinglePlayerScreenController implements Initializable {
     @FXML
     Label p4Name;
 
-  //Lable Coins
+    //Lable Coins
     @FXML
     Label p1coins;
     @FXML
@@ -98,7 +98,7 @@ public class SinglePlayerScreenController implements Initializable {
     @FXML
     Label p4coins;
 
-  //Button
+    //Button
     @FXML
     Button btnCheck;
 
@@ -138,10 +138,10 @@ public class SinglePlayerScreenController implements Initializable {
 
     public void btnCheckclick(ActionEvent e) {
 
-        hideP2Cards();
-        hideP3Cards();
-        hideP4Cards();
-        
+        //game=null;
+       // hideP2Cards();
+        //hideP3Cards();
+        // hideP4Cards();
         int p1c, p2c, p3c, p4c;
         p1c = Integer.parseInt(p1coins.getText());
         p2c = Integer.parseInt(p2coins.getText());
@@ -165,7 +165,7 @@ public class SinglePlayerScreenController implements Initializable {
 
         p1message.setText(p1c + "out");
 
-       // getWinnerPlayer();
+        // getWinnerPlayer();
         p1message.setText("");
         p2message.setText("");
         p3message.setText("");
@@ -189,10 +189,14 @@ public class SinglePlayerScreenController implements Initializable {
         setDeckCards(game);
 
         showPlayer1Cards(player1);
+        showPlayer2Cards(player2);
+        showPlayer3Cards(player3);
+        showPlayer4Cards(player4);
     }
 
     public void btnStartclick(ActionEvent e) {
 
+        coinsDeck = 0;
         int p1Coins = Integer.parseInt(txtp1bet.getText());
 
         int p2Coins = p1Coins;
@@ -206,13 +210,11 @@ public class SinglePlayerScreenController implements Initializable {
         p3.updateCoins(p3Coins);
         p4.updateCoins(p4Coins);
 
-       
-
         showPlayer2Cards(player2);
         showPlayer3Cards(player3);
         showPlayer4Cards(player4);
-        
-        getWinnerPlayer();
+
+        getWinnerPlayer(game);
     }
 
     public void printRank(IPlayer pN, String name) {
@@ -220,15 +222,13 @@ public class SinglePlayerScreenController implements Initializable {
         // System.out.println(name+"have "+re);
     }
 
-
-
     public void setDeckCards(GameTexasHoldem game) {
         //System.out.println("Table cards : .............................");
         List<Card> c = game.getTableCards();
 
         for (int i = 0; i <= c.size() - 1; i++) {
 
-          //  System.out.println(c.get(i));
+            System.out.println(c.get(i));
         }
 
         deckc1.setImage(new Image("/Resources/" + c.get(0) + ".png"));
@@ -237,35 +237,41 @@ public class SinglePlayerScreenController implements Initializable {
         deckc4.setImage(new Image("/Resources/" + c.get(3) + ".png"));
         deckc5.setImage(new Image("/Resources/" + c.get(4) + ".png"));
 
+        Card[] ca = player1.getCards();
+        System.out.println(ca[0]);
+        System.out.println(ca[1]);
     }
 
     public void showPlayer1Cards(IPlayer name) {
-
-        List<Card> card = name.getRankingList();
-        p1c1.setImage(new Image("/Resources/" + card.get(0) + ".png"));
-        p1c2.setImage(new Image("/Resources/" + card.get(0) + ".png"));
+        Card[] ca = name.getCards();
+        //List<Card> card = name.getRankingList();
+        p1c1.setImage(new Image("/Resources/" + ca[0] + ".png"));
+        p1c2.setImage(new Image("/Resources/" + ca[1] + ".png"));
 
     }
 
     public void showPlayer2Cards(IPlayer name) {
 
-        List<Card> card = name.getRankingList();
-        p2c1.setImage(new Image("/Resources/" + card.get(0) + ".png"));
-        p2c2.setImage(new Image("/Resources/" + card.get(0) + ".png"));
+        Card[] ca = name.getCards();
+        //List<Card> card = name.getRankingList();
+        p2c1.setImage(new Image("/Resources/" + ca[0] + ".png"));
+        p2c2.setImage(new Image("/Resources/" + ca[1] + ".png"));
     }
 
     public void showPlayer3Cards(IPlayer name) {
 
-        List<Card> card = name.getRankingList();
-        p3c1.setImage(new Image("/Resources/" + card.get(0) + ".png"));
-        p3c2.setImage(new Image("/Resources/" + card.get(0) + ".png"));
+        Card[] ca = name.getCards();
+        //List<Card> card = name.getRankingList();
+        p3c1.setImage(new Image("/Resources/" + ca[0] + ".png"));
+        p3c2.setImage(new Image("/Resources/" + ca[1] + ".png"));
     }
 
     public void showPlayer4Cards(IPlayer name) {
 
-        List<Card> card = name.getRankingList();
-        p4c1.setImage(new Image("/Resources/" + card.get(0) + ".png"));
-        p4c2.setImage(new Image("/Resources/" + card.get(0) + ".png"));
+        Card[] ca = name.getCards();
+        //List<Card> card = name.getRankingList();
+        p4c1.setImage(new Image("/Resources/" + ca[0] + ".png"));
+        p4c2.setImage(new Image("/Resources/" + ca[1] + ".png"));
     }
 
     public void p1Wins(String by) {
@@ -293,9 +299,15 @@ public class SinglePlayerScreenController implements Initializable {
         p4coins.setText(p4.getCoins() + "");
     }
 
-    public void getWinnerPlayer() {
-        List<IPlayer> winnerList = game.getWinner();
+    public void getWinnerPlayer(GameTexasHoldem gameWin) {
+        List<IPlayer> winnerList = gameWin.getWinner();
 
+      if(winnerList.contains(player1)){
+          
+          System.out.println("player");
+          
+      }
+        
         if (winnerList.size() > 1) {
 
             System.out.println("Draw");
@@ -305,16 +317,16 @@ public class SinglePlayerScreenController implements Initializable {
             p1Wins(re.toString());
 
         } else if (winnerList.contains(player2)) {
-            RankingEnum re = player1.getRankingEnum();
+            RankingEnum re = player2.getRankingEnum();
             p2Wins(re.toString());
 
         } else if (winnerList.contains(player3)) {
-            RankingEnum re = player1.getRankingEnum();
+            RankingEnum re = player3.getRankingEnum();
             p3Wins(re.toString());
 
-        //System.out.println("player3 wins");
+            //System.out.println("player3 wins");
         } else if (winnerList.contains(player4)) {
-            RankingEnum re = player1.getRankingEnum();
+            RankingEnum re = player4.getRankingEnum();
             p4Wins(re.toString());
 
         }
@@ -328,20 +340,17 @@ public class SinglePlayerScreenController implements Initializable {
         p2coins.setText(p2.getCoins() + "");
         p3coins.setText(p3.getCoins() + "");
         p4coins.setText(p4.getCoins() + "");
-        
-        if(p2.getCoins()==0&&p3.getCoins()==0&&p4.getCoins()==0){
+
+        if (p2.getCoins() == 0 && p3.getCoins() == 0 && p4.getCoins() == 0) {
             System.out.println("Player one Won");
             JOptionPane.showMessageDialog(null, "Player one Won");
-        }
-        else if(p1.getCoins()==0&&p3.getCoins()==0&&p4.getCoins()==0){
+        } else if (p1.getCoins() == 0 && p3.getCoins() == 0 && p4.getCoins() == 0) {
             System.out.println("Player two Won");
             JOptionPane.showMessageDialog(null, "Player two Won");
-        }
-        else if(p1.getCoins()==0&&p2.getCoins()==0&&p4.getCoins()==0){
+        } else if (p1.getCoins() == 0 && p2.getCoins() == 0 && p4.getCoins() == 0) {
             System.out.println("Player three Won");
             JOptionPane.showMessageDialog(null, "Player three Won");
-        }
-        else if(p1.getCoins()==0&&p2.getCoins()==0&&p3.getCoins()==0){
+        } else if (p1.getCoins() == 0 && p2.getCoins() == 0 && p3.getCoins() == 0) {
             System.out.println("Player four Won");
             JOptionPane.showMessageDialog(null, "Player four Won");
         }

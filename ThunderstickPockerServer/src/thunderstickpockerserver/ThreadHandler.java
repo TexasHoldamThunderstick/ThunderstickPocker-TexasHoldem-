@@ -5,6 +5,10 @@
  */
 package thunderstickpockerserver;
 
+import com.thunderstick.pocker.texasholdem.Deck;
+import com.thunderstick.pocker.texasholdem.GameTexasHoldem;
+import com.thunderstick.pocker.texasholdem.IDeck;
+import com.thunderstick.pocker.texasholdem.IPlayer;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -18,6 +22,14 @@ import java.util.logging.Logger;
  */
 public class ThreadHandler implements Runnable {
 
+    GameTexasHoldem game;
+    
+        IPlayer player1;
+        IPlayer player2;
+        IPlayer player3;
+        IPlayer player4;
+    
+    
     String mapName;
     Player pl;
 
@@ -41,6 +53,8 @@ public class ThreadHandler implements Runnable {
             
             //Start region player 1
             if (mapName.contains("player1")) {
+                player1=new com.thunderstick.pocker.texasholdem.Player();
+                
                 
                 Player pla = (Player) ThunderstickPockerServer.hm.get("player1");
                 inp = pla.getDataInputStream();
@@ -92,7 +106,7 @@ public class ThreadHandler implements Runnable {
             
                //Start region player 2
             if (mapName.contains("player2")) {
-                
+                 player2=new com.thunderstick.pocker.texasholdem.Player();
                 Player pla = (Player) ThunderstickPockerServer.hm.get("player2");
                 inp = pla.getDataInputStream();
                 out = pla.getDataOutputStream();
@@ -143,7 +157,7 @@ public class ThreadHandler implements Runnable {
 
             //Start region player 3
             if (mapName.contains("player3")) {
-                
+                 player3=new com.thunderstick.pocker.texasholdem.Player();
                 Player pla = (Player) ThunderstickPockerServer.hm.get("player3");
                 inp = pla.getDataInputStream();
                 out = pla.getDataOutputStream();
@@ -194,7 +208,7 @@ public class ThreadHandler implements Runnable {
             
             //Start region player 4
             if (mapName.contains("player4")) {
-                
+                 player4=new com.thunderstick.pocker.texasholdem.Player();
                 Player pla = (Player) ThunderstickPockerServer.hm.get("player4");
                 inp = pla.getDataInputStream();
                 out = pla.getDataOutputStream();
@@ -242,8 +256,37 @@ public class ThreadHandler implements Runnable {
 
             }   
              //End region player 4
+            
+            
+        }
+
+    }
+    
+    
+    
+    public boolean NewGames(){
+        if( ThunderstickPockerServer.hm.size()==4){
+        game = new GameTexasHoldem();
+        IDeck deck = new Deck();
+        
+        game.newGame(deck, player1, player2,player3,player4);
+        
+        game.deal();
+        game.callFlop();
+        game.betRiver();
+        game.betTurn();
+
+        return true;
+       
+        }
+        else{
+        
+            return false;
+        
         }
 
     }
 
+    
+    
 }

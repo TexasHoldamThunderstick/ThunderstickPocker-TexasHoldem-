@@ -100,10 +100,33 @@ public class GameController implements Initializable {
     //player 1
     public void btnStartp1click(ActionEvent e) {
 
+     
+        
     }
 
     public void btncheckp1click(ActionEvent e) {
-
+        
+        try {
+            
+            
+            out.writeUTF("check");
+            String myCards1=inp.readUTF();
+            String myCards2=inp.readUTF();
+             
+            String p2Cards1=inp.readUTF();
+            String p2Cards2=inp.readUTF();
+            
+            String p3Cards1=inp.readUTF();
+            String p3Cards2=inp.readUTF();
+            
+            String p4Cards1=inp.readUTF();
+            String p4Cards2=inp.readUTF();
+            
+            
+        } catch (IOException ex) {
+            Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                
     }
 
     //player 2
