@@ -139,9 +139,9 @@ public class SinglePlayerScreenController implements Initializable {
     public void btnCheckclick(ActionEvent e) {
 
         //game=null;
-       // hideP2Cards();
-        //hideP3Cards();
-        // hideP4Cards();
+        hideP2Cards();
+        hideP3Cards();
+        hideP4Cards();
         int p1c, p2c, p3c, p4c;
         p1c = Integer.parseInt(p1coins.getText());
         p2c = Integer.parseInt(p2coins.getText());
@@ -178,6 +178,7 @@ public class SinglePlayerScreenController implements Initializable {
         player4 = new Player();
 
         IDeck deck = new Deck();
+      
         game.newGame(deck, player1, player2, player3, player4);
 
         game.deal();
@@ -189,9 +190,9 @@ public class SinglePlayerScreenController implements Initializable {
         setDeckCards(game);
 
         showPlayer1Cards(player1);
-        showPlayer2Cards(player2);
-        showPlayer3Cards(player3);
-        showPlayer4Cards(player4);
+       // showPlayer2Cards(player2);
+        //showPlayer3Cards(player3);
+        //showPlayer4Cards(player4);
     }
 
     public void btnStartclick(ActionEvent e) {

@@ -46,6 +46,7 @@ public class MultiplayerController implements Initializable {
     }    
     
     public void startGameScreen() throws IOException{
+        System.out.println("Hi");
         AnchorPane pane = (AnchorPane) FXMLLoader.load(MultiplayerController.class.getResource("/com/thunderstick/pocker/gui/Game.fxml"));
             Scene scene = new Scene(pane);
             Stage stage = new Stage();
