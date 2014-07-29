@@ -5,6 +5,7 @@
  */
 package thunderstickpockerserver;
 
+import com.thunderstick.pocker.Functions.Board;
 import com.thunderstick.pocker.texasholdem.Card;
 import com.thunderstick.pocker.texasholdem.Deck;
 import com.thunderstick.pocker.texasholdem.GameTexasHoldem;
@@ -49,217 +50,288 @@ public class Distributer implements Runnable {
     @Override
     public void run() {
 
+        Player p1,p2,p3,p4;
+        
         while (NotStart) {
 
             if (ThreadHandler.p1Says.contains("check") && ThreadHandler.p2Says.contains("check") && ThreadHandler.p3Says.contains("check") && ThreadHandler.p4Says.contains("check")) {
 
+                 //players
+                            p1 = (Player) ThunderstickPockerServer.hm.get("player1");
+                            p2 = (Player) ThunderstickPockerServer.hm.get("player2");
+                            p3 = (Player) ThunderstickPockerServer.hm.get("player3");
+                            p4 = (Player) ThunderstickPockerServer.hm.get("player4");
+                            
                 if (ThunderstickPockerServer.hm.size() == 4) {
 
-                    System.out.println("done Gathering Players all said check");
-                    NotStart = false;
-                    NewGames();
+                    while (true) {
 
-                    String[] c1, c2, c3, c4, Deck;
+                        if (ThreadHandler.p1Says.contains("check") && ThreadHandler.p2Says.contains("check") && ThreadHandler.p3Says.contains("check") && ThreadHandler.p4Says.contains("check")) {
 
-                    Deck = getDeck();
+                            int bet=Board.getBet();
+                            
+                          
+                            
+                            
+                            ThreadHandler.p1Says = "";
+                            ThreadHandler.p2Says = "";
+                            ThreadHandler.p3Says = "";
+                            ThreadHandler.p4Says = "";
 
-                    Player pla1 = (Player) ThunderstickPockerServer.hm.get("player1");
-                    inp = pla1.getDataInputStream();
-                    out = pla1.getDataOutputStream();
+                           
 
-                    c1 = getP1Cards();
-                    c2 = getP2Cards();
-                    c3 = getP3Cards();
-                    c4 = getP4Cards();
+                            System.out.println("done Gathering Players all said check");
+                            NotStart = false;
+                            NewGames();
 
-                    try {
+                            String[] c1, c2, c3, c4, Deck;
 
-                        out.writeUTF(c1[0]);
-                        out.writeUTF(c1[1]);
+                            Deck = getDeck();
 
-                        out.writeUTF(c2[0]);
-                        out.writeUTF(c2[1]);
+                            Player pla1 = (Player) ThunderstickPockerServer.hm.get("player1");
+                            inp = pla1.getDataInputStream();
+                            out = pla1.getDataOutputStream();
 
-                        out.writeUTF(c3[0]);
-                        out.writeUTF(c3[1]);
+                            c1 = getP1Cards();
+                            c2 = getP2Cards();
+                            c3 = getP3Cards();
+                            c4 = getP4Cards();
 
-                        out.writeUTF(c4[0]);
-                        out.writeUTF(c4[1]);
+                            try {
 
-                        //Print Deck
-                        out.writeUTF(Deck[0]);
-                        out.writeUTF(Deck[1]);
-                        out.writeUTF(Deck[2]);
-                        out.writeUTF(Deck[3]);
-                        out.writeUTF(Deck[4]);
+                                //bet
+                                out.writeUTF(bet+"");
+                     
 
-                        String win = winnerPlayer();
+                                
+                                out.writeUTF(c1[0]);
+                                out.writeUTF(c1[1]);
 
-                        out.writeUTF(win);
+                                out.writeUTF(c2[0]);
+                                out.writeUTF(c2[1]);
 
-                        RankingEnum re = null;
-                        if (win.contains("player1")) {
-                            re = player1.getRankingEnum();
-                        } else if (win.contains("player2")) {
-                            re = player2.getRankingEnum();
-                        } else if (win.contains("player3")) {
-                            re = player3.getRankingEnum();
-                        } else if (win.contains("player4")) {
-                            re = player4.getRankingEnum();
+                                out.writeUTF(c3[0]);
+                                out.writeUTF(c3[1]);
+
+                                out.writeUTF(c4[0]);
+                                out.writeUTF(c4[1]);
+
+                                //Print Deck
+                                out.writeUTF(Deck[0]);
+                                out.writeUTF(Deck[1]);
+                                out.writeUTF(Deck[2]);
+                                out.writeUTF(Deck[3]);
+                                out.writeUTF(Deck[4]);
+
+                                String win = winnerPlayer();
+
+                                out.writeUTF(win);
+
+                                RankingEnum re = null;
+                                if (win.contains("player1")) {
+                                    re = player1.getRankingEnum();
+                                   
+                                } else if (win.contains("player2")) {
+                                    re = player2.getRankingEnum();
+                                  
+                                } else if (win.contains("player3")) {
+                                    re = player3.getRankingEnum();
+                                   
+                                } else if (win.contains("player4")) {
+                                   
+                                    re = player4.getRankingEnum();
+                                }
+                                out.writeUTF(re.toString());
+                                
+                            
+
+                            } catch (IOException ex) {
+
+                            }
+
+                            //player 2
+                            Player pla2 = (Player) ThunderstickPockerServer.hm.get("player2");
+                            inp = pla2.getDataInputStream();
+                            out = pla2.getDataOutputStream();
+
+                            c1 = getP2Cards();
+                            c2 = getP1Cards();
+                            c3 = getP3Cards();
+                            c4 = getP4Cards();
+
+                            try {
+                                
+                                //bet
+                                out.writeUTF(bet+"");
+                                
+                                
+                                out.writeUTF(c1[0]);
+                                out.writeUTF(c1[1]);
+
+                                out.writeUTF(c2[0]);
+                                out.writeUTF(c2[1]);
+
+                                out.writeUTF(c3[0]);
+                                out.writeUTF(c3[1]);
+
+                                out.writeUTF(c4[0]);
+                                out.writeUTF(c4[1]);
+
+                                //Print Deck
+                                out.writeUTF(Deck[0]);
+                                out.writeUTF(Deck[1]);
+                                out.writeUTF(Deck[2]);
+                                out.writeUTF(Deck[3]);
+                                out.writeUTF(Deck[4]);
+
+                                String win = winnerPlayer();
+
+                                out.writeUTF(win);
+
+                                RankingEnum re = null;
+                                if (win.contains("player1")) {
+                                    re = player1.getRankingEnum();
+                                    
+                                } else if (win.contains("player2")) {
+                                    re = player2.getRankingEnum();
+                                    
+                                } else if (win.contains("player3")) {
+                                    re = player3.getRankingEnum();
+                                   
+                                } else if (win.contains("player4")) {
+                                    re = player4.getRankingEnum();
+                                    
+                                }
+                                out.writeUTF(re.toString());
+                                
+                                
+                         
+                                
+                            } catch (IOException ex) {
+
+                            }
+
+                            //player 3
+                            Player pla3 = (Player) ThunderstickPockerServer.hm.get("player3");
+                            inp = pla3.getDataInputStream();
+                            out = pla3.getDataOutputStream();
+
+                            c1 = getP3Cards();
+                            c2 = getP1Cards();
+                            c3 = getP2Cards();
+                            c4 = getP4Cards();
+
+                            try {
+                                 //bet
+                                out.writeUTF(bet+"");
+
+                                out.writeUTF(c1[0]);
+                                out.writeUTF(c1[1]);
+
+                                out.writeUTF(c2[0]);
+                                out.writeUTF(c2[1]);
+
+                                out.writeUTF(c3[0]);
+                                out.writeUTF(c3[1]);
+
+                                out.writeUTF(c4[0]);
+                                out.writeUTF(c4[1]);
+
+                                //Print Deck
+                                out.writeUTF(Deck[0]);
+                                out.writeUTF(Deck[1]);
+                                out.writeUTF(Deck[2]);
+                                out.writeUTF(Deck[3]);
+                                out.writeUTF(Deck[4]);
+
+                                String win = winnerPlayer();
+
+                                out.writeUTF(win);
+
+                                RankingEnum re = null;
+                                if (win.contains("player1")) {
+                                    re = player1.getRankingEnum();
+                                  
+                                } else if (win.contains("player2")) {
+                                    re = player2.getRankingEnum();
+                                  
+                                } else if (win.contains("player3")) {
+                                    re = player3.getRankingEnum();
+                                   
+                                } else if (win.contains("player4")) {
+                                    re = player4.getRankingEnum();
+                                   
+                                }
+                                out.writeUTF(re.toString());
+                                
+                              
+                                
+                            } catch (IOException ex) {
+
+                            }
+
+                            //player 4
+                            Player pla4 = (Player) ThunderstickPockerServer.hm.get("player4");
+                            inp = pla4.getDataInputStream();
+                            out = pla4.getDataOutputStream();
+
+                            c1 = getP4Cards();
+                            c2 = getP1Cards();
+                            c3 = getP2Cards();
+                            c4 = getP3Cards();
+
+                            try {
+
+                             //bet
+                                out.writeUTF(bet+"");
+
+                                out.writeUTF(c1[0]);
+                                out.writeUTF(c1[1]);
+
+                                out.writeUTF(c2[0]);
+                                out.writeUTF(c2[1]);
+
+                                out.writeUTF(c3[0]);
+                                out.writeUTF(c3[1]);
+
+                                out.writeUTF(c4[0]);
+                                out.writeUTF(c4[1]);
+
+                                //Print Deck
+                                out.writeUTF(Deck[0]);
+                                out.writeUTF(Deck[1]);
+                                out.writeUTF(Deck[2]);
+                                out.writeUTF(Deck[3]);
+                                out.writeUTF(Deck[4]);
+
+                                String win = winnerPlayer();
+
+                                out.writeUTF(win);
+
+                                RankingEnum re = null;
+                                if (win.contains("player1")) {
+                                    re = player1.getRankingEnum();
+                                   
+                                } else if (win.contains("player2")) {
+                                    re = player2.getRankingEnum();
+                                   
+                                } else if (win.contains("player3")) {
+                                    re = player3.getRankingEnum();
+                                   
+                                } else if (win.contains("player4")) {
+                                    re = player4.getRankingEnum();
+                                
+                                }
+                                out.writeUTF(re.toString());
+                                
+                              
+
+                            } catch (IOException ex) {
+
+                            }
                         }
-                        out.writeUTF(re.toString());
 
-                    } catch (IOException ex) {
-
-                    }
-
-                    //player 2
-                    Player pla2 = (Player) ThunderstickPockerServer.hm.get("player2");
-                    inp = pla2.getDataInputStream();
-                    out = pla2.getDataOutputStream();
-
-                    c1 = getP2Cards();
-                    c2 = getP1Cards();
-                    c3 = getP3Cards();
-                    c4 = getP4Cards();
-
-                    try {
-                        out.writeUTF(c1[0]);
-                        out.writeUTF(c1[1]);
-
-                        out.writeUTF(c2[0]);
-                        out.writeUTF(c2[1]);
-
-                        out.writeUTF(c3[0]);
-                        out.writeUTF(c3[1]);
-
-                        out.writeUTF(c4[0]);
-                        out.writeUTF(c4[1]);
-
-                        //Print Deck
-                        out.writeUTF(Deck[0]);
-                        out.writeUTF(Deck[1]);
-                        out.writeUTF(Deck[2]);
-                        out.writeUTF(Deck[3]);
-                        out.writeUTF(Deck[4]);
-
-                        String win = winnerPlayer();
-
-                        out.writeUTF(win);
-                        
-                        RankingEnum re = null;
-                        if (win.contains("player1")) {
-                            re = player1.getRankingEnum();
-                        } else if (win.contains("player2")) {
-                            re = player2.getRankingEnum();
-                        } else if (win.contains("player3")) {
-                            re = player3.getRankingEnum();
-                        } else if (win.contains("player4")) {
-                            re = player4.getRankingEnum();
-                        }
-                        out.writeUTF(re.toString());
-                    } catch (IOException ex) {
-
-                    }
-
-                    //player 3
-                    Player pla3 = (Player) ThunderstickPockerServer.hm.get("player3");
-                    inp = pla3.getDataInputStream();
-                    out = pla3.getDataOutputStream();
-
-                    c1 = getP3Cards();
-                    c2 = getP1Cards();
-                    c3 = getP2Cards();
-                    c4 = getP4Cards();
-
-                    try {
-                        out.writeUTF(c1[0]);
-                        out.writeUTF(c1[1]);
-
-                        out.writeUTF(c2[0]);
-                        out.writeUTF(c2[1]);
-
-                        out.writeUTF(c3[0]);
-                        out.writeUTF(c3[1]);
-
-                        out.writeUTF(c4[0]);
-                        out.writeUTF(c4[1]);
-
-                        //Print Deck
-                        out.writeUTF(Deck[0]);
-                        out.writeUTF(Deck[1]);
-                        out.writeUTF(Deck[2]);
-                        out.writeUTF(Deck[3]);
-                        out.writeUTF(Deck[4]);
-
-                        String win = winnerPlayer();
-
-                        out.writeUTF(win);
-                        
-                        RankingEnum re = null;
-                        if (win.contains("player1")) {
-                            re = player1.getRankingEnum();
-                        } else if (win.contains("player2")) {
-                            re = player2.getRankingEnum();
-                        } else if (win.contains("player3")) {
-                            re = player3.getRankingEnum();
-                        } else if (win.contains("player4")) {
-                            re = player4.getRankingEnum();
-                        }
-                        out.writeUTF(re.toString());
-                    } catch (IOException ex) {
-
-                    }
-
-                    //player 4
-                    Player pla4 = (Player) ThunderstickPockerServer.hm.get("player4");
-                    inp = pla4.getDataInputStream();
-                    out = pla4.getDataOutputStream();
-
-                    c1 = getP4Cards();
-                    c2 = getP1Cards();
-                    c3 = getP2Cards();
-                    c4 = getP3Cards();
-
-                    try {
-                        out.writeUTF(c1[0]);
-                        out.writeUTF(c1[1]);
-
-                        out.writeUTF(c2[0]);
-                        out.writeUTF(c2[1]);
-
-                        out.writeUTF(c3[0]);
-                        out.writeUTF(c3[1]);
-
-                        out.writeUTF(c4[0]);
-                        out.writeUTF(c4[1]);
-
-                        //Print Deck
-                        out.writeUTF(Deck[0]);
-                        out.writeUTF(Deck[1]);
-                        out.writeUTF(Deck[2]);
-                        out.writeUTF(Deck[3]);
-                        out.writeUTF(Deck[4]);
-
-                        String win = winnerPlayer();
-
-                        out.writeUTF(win);
-
-                        RankingEnum re = null;
-                        if (win.contains("player1")) {
-                            re = player1.getRankingEnum();
-                        } else if (win.contains("player2")) {
-                            re = player2.getRankingEnum();
-                        } else if (win.contains("player3")) {
-                            re = player3.getRankingEnum();
-                        } else if (win.contains("player4")) {
-                            re = player4.getRankingEnum();
-                        }
-                        out.writeUTF(re.toString());
-                        
-                    } catch (IOException ex) {
-
-                    }
+                    }  //end while
 
                 }
             }

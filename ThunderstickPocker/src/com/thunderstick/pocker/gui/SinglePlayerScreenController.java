@@ -25,6 +25,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javax.swing.JOptionPane;
 
 public class SinglePlayerScreenController implements Initializable {
@@ -118,6 +120,7 @@ public class SinglePlayerScreenController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+         play();
         p1 = new PlayerGameInfo(200, true);
         p2 = new PlayerGameInfo(200, true);
         p3 = new PlayerGameInfo(200, true);
@@ -378,4 +381,11 @@ public class SinglePlayerScreenController implements Initializable {
         p4c2.setImage(null);
     }
 
+    public void play(){
+          
+    final URL resource = getClass().getResource("/Resources/texas.mp3");
+    final Media media = new Media(resource.toString());
+    final MediaPlayer mediaPlayer = new MediaPlayer(media);
+    mediaPlayer.play();
+    }
 }

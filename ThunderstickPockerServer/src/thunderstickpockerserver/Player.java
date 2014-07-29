@@ -59,9 +59,9 @@ public class Player {
        return ImageNumber;
    }
 
-    public void getCoins() throws IOException{
-        out.writeUTF((Coins+""));
-        Coins=Coins-100;
+    public void getCoins(){
+       // out.writeUTF((Coins+""));
+        //Coins=Coins-100;
     }
     
     public DataInputStream getDataInputStream(){
@@ -74,18 +74,17 @@ public class Player {
         return out;
     }
      
-     public boolean updateCoins(int coin,String type){
+     public void updateCoins(int coin,String type){
          if(type.contentEquals("inc")){
              Coins=Coins+coin;
          }
          else{
-             Coins=Coins+coin;
+             Coins=Coins-coin;
          }
          
-         if(Coins>0){Alive=true;}
-         else{Alive=false;}
-         
-         return Alive;
+         if(Coins>0){;}
+         else{Coins=0;}
+       
      }
 
 }

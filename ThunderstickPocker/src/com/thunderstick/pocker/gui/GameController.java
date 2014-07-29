@@ -6,6 +6,7 @@
 package com.thunderstick.pocker.gui;
 
 import com.thunderstick.pocker.Functions.CheckFunction;
+import com.thunderstick.pocker.Functions.PlayerGameInfo;
 import com.thunderstick.pocker.Functions.SocketClass;
 import com.thunderstick.pocker.texasholdem.Card;
 import com.thunderstick.pocker.texasholdem.IPlayer;
@@ -21,9 +22,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -31,6 +36,18 @@ import javafx.scene.image.ImageView;
  * @author tawsoft
  */
 public class GameController implements Initializable {
+
+    String bet;
+    
+    //coins
+    @FXML
+    Label txtcoinsp1;
+    @FXML
+    Label txtcoinsp2;
+    @FXML
+    Label txtcoinsp3;
+    @FXML
+    Label txtcoinsp4;
 
     Thread t1;
     /**
@@ -112,19 +129,34 @@ public class GameController implements Initializable {
     String p4Card2 = "";
 
     //Text messages
-    /*
     @FXML
-    TextField txtP1;
+    Label txtP1;
     @FXML
-    TextField txtP2;
+    Label txtP2;
     @FXML
-    TextField txtP3;
+    Label txtP3;
     @FXML
-    TextField txtP4;
-*/
+    Label txtP4;
+
+    
+    //PlayerModel
+    PlayerGameInfo p1;
+    PlayerGameInfo p2;
+    PlayerGameInfo p3;
+    PlayerGameInfo p4;
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        play();
+        
+        p1 = new PlayerGameInfo(200, true);
+        p2 = new PlayerGameInfo(200, true);
+        p3 = new PlayerGameInfo(200, true);
+        p4 = new PlayerGameInfo(200, true);
+        
+        
         inp = SocketClass.getIn();
         out = SocketClass.getOut();
         String playerName = "";
@@ -152,18 +184,64 @@ public class GameController implements Initializable {
             hideP3();
         }
 
+        txtcoinsp1.setText("200");
+        txtcoinsp2.setText("200");
+        txtcoinsp3.setText("200");
+        txtcoinsp4.setText("200");
+
     }
 
     //player 1
     public void btnStartp1click(ActionEvent e) {
 
+        txtP1.setVisible(true);
+        txtP2.setVisible(true);
+        txtP3.setVisible(true);
+        txtP4.setVisible(true);
+
+        showP1Cards();
+        showP2Cards();
+        showP3Cards();
+        showP4Cards();
+
+  
+       
+
+        coinsinit();
     }
 
     public void btncheckp1click(ActionEvent e) {
+
+        txtP1.setText("");
+        txtP2.setText("");
+        txtP3.setText("");
+        txtP4.setText("");
+
+        txtP1.setVisible(false);
+        txtP2.setVisible(false);
+        txtP3.setVisible(false);
+        txtP4.setVisible(false);
+
+        hideP2Cards();
+        hideP3Cards();
+        hideP4Cards();
+
         System.out.println("p1 check clicked");
         try {
 
             out.writeUTF("check");
+            
+            out.writeUTF(txtamountp1.getText());
+
+           bet = inp.readUTF();
+           
+            p1.updateCoins(Integer.parseInt(bet.toString().trim()));
+        p2.updateCoins(Integer.parseInt(bet.toString().trim()));
+        p3.updateCoins(Integer.parseInt(bet.toString().trim()));
+        p4.updateCoins(Integer.parseInt(bet.toString().trim()));
+        
+           System.out.println("Bet is: "+bet);
+           
 
             String myCards1 = inp.readUTF();
             String myCards2 = inp.readUTF();
@@ -207,25 +285,28 @@ public class GameController implements Initializable {
 
             String winner = inp.readUTF();
             System.out.println("Winner is :" + winner);
-          
-           String by=inp.readUTF();
-            
-                    if(winner.toString().trim().contains("player1")){
-                       // txtP1.setText("Player1 wins by :"+by);
-                        System.out.println("Player1 wins by :"+by);
-                    }
-                    else if(winner.toString().trim().contains("player2")){
-                       // txtP2.setText("Player2 wins by :"+by);
-                        System.out.println("Player2 wins by :"+by);
-                    }
-                    else if(winner.toString().trim().contains("player3")){
-                       // txtP3.setText("Player3 wins by :"+by);
-                        System.out.println("Player3 wins by :"+by);
-                    }
-                    else{
-                         //txtP4.setText("Player4 wins by :"+by);
-                        System.out.println("Player4 wins by :"+by);
-                    }
+
+            String by = inp.readUTF();
+
+            if (winner.toString().trim().contains("player1")) {
+                txtP1.setText("Player1 wins by :" + by);
+                System.out.println("Player1 wins by :" + by);
+                
+                p1.incCoins(Integer.parseInt(bet.toString().trim())*4);
+
+            } else if (winner.toString().trim().contains("player2")) {
+                txtP2.setText("Player2 wins by :" + by);
+                System.out.println("Player2 wins by :" + by);
+                 p2.incCoins(Integer.parseInt(bet.toString().trim())*4);
+            } else if (winner.toString().trim().contains("player3")) {
+                txtP3.setText("Player3 wins by :" + by);
+                System.out.println("Player3 wins by :" + by);
+                 p3.incCoins(Integer.parseInt(bet.toString().trim())*4);
+            } else {
+                txtP4.setText("Player4 wins by :" + by);
+                System.out.println("Player4 wins by :" + by);
+                 p4.incCoins(Integer.parseInt(bet.toString().trim())*4);
+            }
 
         } catch (IOException ex) {
             Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
@@ -236,13 +317,49 @@ public class GameController implements Initializable {
 
     //player 2
     public void btnStartp2click(ActionEvent e) {
+        txtP1.setVisible(true);
+        txtP2.setVisible(true);
+        txtP3.setVisible(true);
+        txtP4.setVisible(true);
 
+        showP1Cards();
+        showP2Cards();
+        showP3Cards();
+        showP4Cards();
+        
+   
+        coinsinit();
     }
 
     public void btncheckp2click(ActionEvent e) {
+        txtP1.setText("");
+        txtP2.setText("");
+        txtP3.setText("");
+        txtP4.setText("");
+
+        txtP1.setVisible(false);
+        txtP2.setVisible(false);
+        txtP3.setVisible(false);
+        txtP4.setVisible(false);
+
+        hideP1Cards();
+        hideP3Cards();
+        hideP4Cards();
         try {
             System.out.println("p2 check clicked");
-            out.writeUTF("check");
+            out.writeUTF("check");     
+            
+            out.writeUTF(txtamountp2.getText());
+            
+         bet = inp.readUTF();
+         
+         
+            p1.updateCoins(Integer.parseInt(bet.toString().trim()));
+        p2.updateCoins(Integer.parseInt(bet.toString().trim()));
+        p3.updateCoins(Integer.parseInt(bet.toString().trim()));
+        p4.updateCoins(Integer.parseInt(bet.toString().trim()));
+        
+           System.out.println("Bet is: "+bet);
 
             String myCards1 = inp.readUTF();
             String myCards2 = inp.readUTF();
@@ -281,38 +398,80 @@ public class GameController implements Initializable {
             String winner = inp.readUTF();
             System.out.println("Winner is :" + winner);
 
-          
             String by = inp.readUTF();
 
             if (winner.toString().trim().contains("player1")) {
-                //txtP1.setText("Player1 wins by :" + by);
-                System.out.println("Player1 wins by :"+by);
+                txtP1.setText("Player1 wins by :" + by);
+                System.out.println("Player1 wins by :" + by);
+                 p1.incCoins(Integer.parseInt(bet.toString().trim())*4);
             } else if (winner.toString().trim().contains("player2")) {
-               // txtP2.setText("Player2 wins by :" + by);
-                System.out.println("Player2 wins by :"+by);
+                txtP2.setText("Player2 wins by :" + by);
+                System.out.println("Player2 wins by :" + by);
+                 p2.incCoins(Integer.parseInt(bet.toString().trim())*4);
             } else if (winner.toString().trim().contains("player3")) {
-              //  txtP3.setText("Player3 wins by :" + by);
-                System.out.println("Player3 wins by :"+by);
+                txtP3.setText("Player3 wins by :" + by);
+                System.out.println("Player3 wins by :" + by);
+                 p3.incCoins(Integer.parseInt(bet.toString().trim())*4);
             } else {
-               // txtP4.setText("Player4 wins by :" + by);
-                System.out.println("Player4 wins by :"+by);
+                txtP4.setText("Player4 wins by :" + by);
+                System.out.println("Player4 wins by :" + by);
+                 p4.incCoins(Integer.parseInt(bet.toString().trim())*4);
             }
 
         } catch (IOException ex) {
             Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex.toString());
         }
+
     }
 
     //player 3
     public void btnStartp3click(ActionEvent e) {
 
+        txtP1.setVisible(true);
+        txtP2.setVisible(true);
+        txtP3.setVisible(true);
+        txtP4.setVisible(true);
+
+        showP1Cards();
+        showP2Cards();
+        showP3Cards();
+        showP4Cards();
+        
+     
+        coinsinit();
     }
 
     public void btncheckp3click(ActionEvent e) {
+        txtP1.setText("");
+        txtP2.setText("");
+        txtP3.setText("");
+        txtP4.setText("");
+
+        txtP1.setVisible(false);
+        txtP2.setVisible(false);
+        txtP3.setVisible(false);
+        txtP4.setVisible(false);
+
+        hideP1Cards();
+        hideP2Cards();
+        hideP4Cards();
+
         try {
             System.out.println("p3 check clicked");
             out.writeUTF("check");
+            
+            out.writeUTF(txtamountp3.getText());
+
+          bet = inp.readUTF();
+          
+          
+            p1.updateCoins(Integer.parseInt(bet.toString().trim()));
+        p2.updateCoins(Integer.parseInt(bet.toString().trim()));
+        p3.updateCoins(Integer.parseInt(bet.toString().trim()));
+        p4.updateCoins(Integer.parseInt(bet.toString().trim()));
+        
+           System.out.println("Bet is: "+bet);
 
             String myCards1 = inp.readUTF();
             String myCards2 = inp.readUTF();
@@ -351,38 +510,81 @@ public class GameController implements Initializable {
             String winner = inp.readUTF();
             System.out.println("Winner is :" + winner);
 
-           
             String by = inp.readUTF();
 
             if (winner.toString().trim().contains("player1")) {
-              //  txtP1.setText("Player1 wins by :" + by);
-                System.out.println("Player1 wins by :"+by);
+                txtP1.setText("Player1 wins by :" + by);
+                System.out.println("Player1 wins by :" + by);
+                 p1.incCoins(Integer.parseInt(bet.toString().trim())*4);
             } else if (winner.toString().trim().contains("player2")) {
-               // txtP2.setText("Player2 wins by :" + by);
-                System.out.println("Player2 wins by :"+by);
+                txtP2.setText("Player2 wins by :" + by);
+                System.out.println("Player2 wins by :" + by);
+                 p2.incCoins(Integer.parseInt(bet.toString().trim())*4);
             } else if (winner.toString().trim().contains("player3")) {
-               // txtP3.setText("Player3 wins by :" + by);
-                System.out.println("Player3 wins by :"+by);
+                txtP3.setText("Player3 wins by :" + by);
+                System.out.println("Player3 wins by :" + by);
+                 p3.incCoins(Integer.parseInt(bet.toString().trim())*4);
             } else {
-               // txtP4.setText("Player4 wins by :" + by);
-                System.out.println("Player4 wins by :"+by);
+                txtP4.setText("Player4 wins by :" + by);
+                System.out.println("Player4 wins by :" + by);
+                 p4.incCoins(Integer.parseInt(bet.toString().trim())*4);
             }
 
         } catch (IOException ex) {
             Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex.toString());
         }
+
     }
 
     //player 4
     public void btnStartp4click(ActionEvent e) {
+        showP1Cards();
+        showP2Cards();
+        showP3Cards();
+        showP4Cards();
 
+        txtP1.setVisible(true);
+        txtP2.setVisible(true);
+        txtP3.setVisible(true);
+        txtP4.setVisible(true);
+        
+        
+        
+        coinsinit();
     }
 
     public void btncheckp4click(ActionEvent e) {
+        txtP1.setText("");
+        txtP2.setText("");
+        txtP3.setText("");
+        txtP4.setText("");
+
+        txtP1.setVisible(false);
+        txtP2.setVisible(false);
+        txtP3.setVisible(false);
+        txtP4.setVisible(false);
+
+        hideP1Cards();
+        hideP2Cards();
+        hideP3Cards();
+
         try {
             System.out.println("p4 check clicked");
             out.writeUTF("check");
+
+            out.writeUTF(txtamountp4.getText());
+            
+            bet = inp.readUTF();
+            
+            
+            p1.updateCoins(Integer.parseInt(bet.toString().trim()));
+        p2.updateCoins(Integer.parseInt(bet.toString().trim()));
+        p3.updateCoins(Integer.parseInt(bet.toString().trim()));
+        p4.updateCoins(Integer.parseInt(bet.toString().trim()));
+        
+           System.out.println("Bet is: "+bet);
+      
 
             String myCards1 = inp.readUTF();
             String myCards2 = inp.readUTF();
@@ -416,27 +618,31 @@ public class GameController implements Initializable {
             String winner = inp.readUTF();
             System.out.println("Winner is :" + winner);
 
-            
             String by = inp.readUTF();
 
             if (winner.toString().trim().contains("player1")) {
-                //txtP1.setText("Player1 wins by :" + by);
-                System.out.println("Player1 wins by :"+by);
+                txtP1.setText("Player1 wins by :" + by);
+                System.out.println("Player1 wins by :" + by);
+                 p1.incCoins(Integer.parseInt(bet.toString().trim())*4);
             } else if (winner.toString().trim().contains("player2")) {
-                //txtP2.setText("Player2 wins by :" + by);
-                System.out.println("Player2 wins by :"+by);
+                txtP2.setText("Player2 wins by :" + by);
+                System.out.println("Player2 wins by :" + by);
+                 p2.incCoins(Integer.parseInt(bet.toString().trim())*4);
             } else if (winner.toString().trim().contains("player3")) {
-                //txtP3.setText("Player3 wins by :" + by);
-                System.out.println("Player3 wins by :"+by);
+                txtP3.setText("Player3 wins by :" + by);
+                System.out.println("Player3 wins by :" + by);
+                 p3.incCoins(Integer.parseInt(bet.toString().trim())*4);
             } else {
-                //txtP4.setText("Player4 wins by :" + by);
-                System.out.println("Player4 wins by :"+by);
+                txtP4.setText("Player4 wins by :" + by);
+                System.out.println("Player4 wins by :" + by);
+                 p4.incCoins(Integer.parseInt(bet.toString().trim())*4);
             }
 
         } catch (IOException ex) {
             Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex.toString());
         }
+
     }
 
     //hide Buttons
@@ -462,6 +668,48 @@ public class GameController implements Initializable {
         btnStartp4.setVisible(false);
         btncheckp4.setVisible(false);
         txtamountp4.setEditable(false);
+    }
+
+    //hide cards
+    public void hideP1Cards() {
+        p1c1.setVisible(false);
+        p1c2.setVisible(false);
+    }
+
+    public void hideP2Cards() {
+        p2c1.setVisible(false);
+        p2c2.setVisible(false);
+    }
+
+    public void hideP3Cards() {
+        p3c1.setVisible(false);
+        p3c2.setVisible(false);
+    }
+
+    public void hideP4Cards() {
+        p4c1.setVisible(false);
+        p4c2.setVisible(false);
+    }
+
+    //show
+    public void showP1Cards() {
+        p1c1.setVisible(true);
+        p1c2.setVisible(true);
+    }
+
+    public void showP2Cards() {
+        p2c1.setVisible(true);
+        p2c2.setVisible(true);
+    }
+
+    public void showP3Cards() {
+        p3c1.setVisible(true);
+        p3c2.setVisible(true);
+    }
+
+    public void showP4Cards() {
+        p4c1.setVisible(true);
+        p4c2.setVisible(true);
     }
 
     public void showPlayer1Cards(String c1, String c2) {
@@ -500,4 +748,39 @@ public class GameController implements Initializable {
         Dc5.setImage(new Image("/Resources/" + de[4] + ".png"));
 
     }
+    
+    
+    private void coinsinit() {
+        
+        txtcoinsp1.setText(p1.getCoins() + "");
+        txtcoinsp2.setText(p2.getCoins() + "");
+        txtcoinsp3.setText(p3.getCoins() + "");
+        txtcoinsp4.setText(p4.getCoins() + "");
+
+        if (p2.getCoins() == 0 && p3.getCoins() == 0 && p4.getCoins() == 0) {
+            
+            System.out.println("Player one Won");
+            JOptionPane.showMessageDialog(null, "Player one Won");
+        } else if (p1.getCoins() == 0 && p3.getCoins() == 0 && p4.getCoins() == 0) {
+            System.out.println("Player two Won");
+            JOptionPane.showMessageDialog(null, "Player two Won");
+        } else if (p1.getCoins() == 0 && p2.getCoins() == 0 && p4.getCoins() == 0) {
+            System.out.println("Player three Won");
+            JOptionPane.showMessageDialog(null, "Player three Won");
+        } else if (p1.getCoins() == 0 && p2.getCoins() == 0 && p3.getCoins() == 0) {
+            System.out.println("Player four Won");
+            JOptionPane.showMessageDialog(null, "Player four Won");
+        }
+
+    }
+    
+    
+    public void play(){
+          
+    final URL resource = getClass().getResource("/Resources/texas.mp3");
+    final Media media = new Media(resource.toString());
+    final MediaPlayer mediaPlayer = new MediaPlayer(media);
+    mediaPlayer.play();
+    }
+
 }
