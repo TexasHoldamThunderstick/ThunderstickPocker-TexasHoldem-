@@ -20,14 +20,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
 /**
@@ -145,11 +150,14 @@ public class GameController implements Initializable {
     PlayerGameInfo p3;
     PlayerGameInfo p4;
     
+    @FXML
+    Button btnShowRules;
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        play();
+      
         
         p1 = new PlayerGameInfo(200, true);
         p2 = new PlayerGameInfo(200, true);
@@ -774,13 +782,18 @@ public class GameController implements Initializable {
 
     }
     
-    
-    public void play(){
-          
-    final URL resource = getClass().getResource("/Resources/texas.mp3");
-    final Media media = new Media(resource.toString());
-    final MediaPlayer mediaPlayer = new MediaPlayer(media);
-    mediaPlayer.play();
+
+    public void btnShowRulesClick(ActionEvent e) throws IOException{
+        
+        AnchorPane pane = (AnchorPane) FXMLLoader.load(HomeController.class.getResource("/com/thunderstick/pocker/gui/rules.fxml"));
+        Scene scene = new Scene(pane);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Rules");
+        stage.show();
+        //((Node) e.getTarget()).getScene().getWindow().hide();
+        
     }
+    
 
 }

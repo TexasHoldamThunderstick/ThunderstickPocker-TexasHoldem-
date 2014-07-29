@@ -33,6 +33,9 @@ public class MultiplayerController implements Initializable {
 
     @FXML
     Button btnLogin;
+    @FXML
+    Button btnClose;
+    
     /**
      * Initializes the controller class.
      */
@@ -72,4 +75,17 @@ public class MultiplayerController implements Initializable {
        }
        
     }
+    
+    
+    public void btnCloseclick(ActionEvent e) throws IOException{
+        AnchorPane pane = (AnchorPane) FXMLLoader.load(HomeController.class.getResource("/com/thunderstick/pocker/gui/Home.fxml"));
+        Scene scene = new Scene(pane);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Home");
+        stage.show();
+        ((Node) e.getTarget()).getScene().getWindow().hide();
+    }
+    
+    
 }

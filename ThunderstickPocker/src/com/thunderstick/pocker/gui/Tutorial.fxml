@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.media.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.web.*?>
@@ -9,9 +10,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.thunderstick.pocker.gui.TutorialController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thunderstick.pocker.gui.TutorialController">
    <children>
-      <MediaView fitHeight="200.0" fitWidth="200.0" layoutX="215.0" layoutY="41.0" />
+      <HTMLEditor disable="true" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&#10;&#10;Single Player&#10;&lt;/br&gt;&#10;&#10;User has the ability to select a bet and when ever he feels not ok he can check again and pass the chance&#10;&#10;&#10;Multiplayer&#10;&lt;/br&gt;&lt;/br&gt;&#10;One user has to start the server project and then use the ip address of that pc which the server is running to log in to the game.&#10;&lt;/br&gt;&lt;/br&gt;&#10;User can bet as they want but only the lucky one gets the chance to play with his own bet.&#10;&lt;/br&gt;&#10;When three players reach 0 remaining player get the place of the winner&#10;&lt;/br&gt;&#10;&lt;/br&gt;&#10;Cards:&#10;&lt;/br&gt;&#10;User will be provided with 2 cards and 5 cards in the deck and user has to check those cards and think whether to continue of bet.&#10;&#10;&#10;&#10;&lt;/body&gt;&lt;/html&gt;" layoutY="14.0" prefHeight="386.0" prefWidth="600.0" />
+      <Button fx:id="btnClose" layoutX="507.0" layoutY="351.0" mnemonicParsing="false" onAction="#btnCloseclick" text="Close" />
    </children>
 </AnchorPane>

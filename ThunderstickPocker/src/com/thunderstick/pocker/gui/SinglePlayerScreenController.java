@@ -14,19 +14,25 @@ import com.thunderstick.pocker.texasholdem.IPlayer;
 import com.thunderstick.pocker.texasholdem.Player;
 import com.thunderstick.pocker.texasholdem.RankingEnum;
 import java.awt.Dialog;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
 public class SinglePlayerScreenController implements Initializable {
@@ -118,9 +124,12 @@ public class SinglePlayerScreenController implements Initializable {
     //Game Barriers
     boolean p1Live, p2Live, p3Live, p4Live;
 
+    @FXML
+    Button btnShowRules;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         play();
+      
         p1 = new PlayerGameInfo(200, true);
         p2 = new PlayerGameInfo(200, true);
         p3 = new PlayerGameInfo(200, true);
@@ -201,7 +210,14 @@ public class SinglePlayerScreenController implements Initializable {
     public void btnStartclick(ActionEvent e) {
 
         coinsDeck = 0;
-        int p1Coins = Integer.parseInt(txtp1bet.getText());
+        
+        int p1Coins ;
+        try{
+        p1Coins = Integer.parseInt(txtp1bet.getText());
+        }
+        catch(Exception ex){
+            p1Coins=0;
+        }
 
         int p2Coins = p1Coins;
         int p3Coins = p1Coins;
@@ -283,24 +299,32 @@ public class SinglePlayerScreenController implements Initializable {
         //coinsDeck
         p1.incCoins(coinsDeck);
         p1coins.setText(p1.getCoins() + "");
+        
+        
     }
 
     public void p2Wins(String by) {
         p2message.setText("winner    :" + by);
         p2.incCoins(coinsDeck);
         p2coins.setText(p2.getCoins() + "");
+        
+         
     }
 
     public void p3Wins(String by) {
         p3message.setText("winner    :" + by);
         p3.incCoins(coinsDeck);
         p3coins.setText(p3.getCoins() + "");
+        
+        
     }
 
     public void p4Wins(String by) {
         p4message.setText("winner    :" + by);
         p4.incCoins(coinsDeck);
         p4coins.setText(p4.getCoins() + "");
+        
+         
     }
 
     public void getWinnerPlayer(GameTexasHoldem gameWin) {
@@ -380,12 +404,16 @@ public class SinglePlayerScreenController implements Initializable {
         p4c1.setImage(null);
         p4c2.setImage(null);
     }
-
-    public void play(){
-          
-    final URL resource = getClass().getResource("/Resources/texas.mp3");
-    final Media media = new Media(resource.toString());
-    final MediaPlayer mediaPlayer = new MediaPlayer(media);
-    mediaPlayer.play();
+ public void btnShowRulesClick(ActionEvent e) throws IOException{
+        
+        AnchorPane pane = (AnchorPane) FXMLLoader.load(HomeController.class.getResource("/com/thunderstick/pocker/gui/rules.fxml"));
+        Scene scene = new Scene(pane);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Rules");
+        stage.show();
+       // ((Node) e.getTarget()).getScene().getWindow().hide();
+        
     }
+
 }

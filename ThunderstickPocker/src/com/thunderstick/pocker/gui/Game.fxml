@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.shape.*?>
 <?import java.lang.*?>
@@ -10,7 +11,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="580.0" prefWidth="731.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thunderstick.pocker.gui.GameController">
    <children>
-      <Pane layoutX="14.0" layoutY="14.0" prefHeight="177.0" prefWidth="196.0">
+      <Pane layoutX="14.0" layoutY="14.0" prefHeight="193.0" prefWidth="245.0">
          <children>
             <ImageView fx:id="p1img" fitHeight="84.0" fitWidth="100.0" layoutX="14.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -21,14 +22,14 @@
             <Button fx:id="btncheckp1" layoutX="71.0" layoutY="87.0" mnemonicParsing="false" onAction="#btncheckp1click" text="Check" />
             <TextField fx:id="txtamountp1" layoutX="14.0" layoutY="118.0" prefHeight="25.0" prefWidth="65.0" promptText="amount" />
             <Label layoutX="134.0" layoutY="14.0" prefHeight="17.0" prefWidth="57.0" text="Player 1" />
-            <Label fx:id="txtP1" layoutX="14.0" layoutY="147.0" prefHeight="25.0" prefWidth="163.0" />
+            <Label fx:id="txtP1" layoutX="14.0" layoutY="165.0" prefHeight="25.0" prefWidth="163.0" />
             <Label fx:id="txtcoinsp1" layoutX="134.0" layoutY="53.0" prefHeight="17.0" prefWidth="48.0" />
-            <ImageView fx:id="p1c1" fitHeight="50.0" fitWidth="32.0" layoutX="122.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="p1c1" fitHeight="63.0" fitWidth="47.0" layoutX="122.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../../Desktop/card_12.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="p1c2" fitHeight="50.0" fitWidth="32.0" layoutX="161.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="p1c2" fitHeight="63.0" fitWidth="48.0" layoutX="182.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../../Desktop/card_12.png" />
                </image>
@@ -38,34 +39,34 @@
       <Pane layoutX="210.0" layoutY="191.0" prefHeight="177.0" prefWidth="305.0">
          <children>
             <Ellipse fill="#1fff44" layoutX="143.0" layoutY="89.0" radiusX="196.0" radiusY="80.0" stroke="BLACK" strokeType="INSIDE" />
-            <ImageView fx:id="Dc1" fitHeight="50.0" fitWidth="32.0" layoutX="29.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="Dc1" fitHeight="71.0" fitWidth="65.0" layoutX="-4.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../../Desktop/card_12.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="Dc2" fitHeight="50.0" fitWidth="32.0" layoutX="79.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="Dc2" fitHeight="71.0" fitWidth="53.0" layoutX="58.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../../Desktop/card_12.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="Dc3" fitHeight="50.0" fitWidth="32.0" layoutX="127.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="Dc3" fitHeight="106.0" fitWidth="53.0" layoutX="117.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../../Desktop/card_12.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="Dc4" fitHeight="50.0" fitWidth="32.0" layoutX="177.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="Dc4" fitHeight="111.0" fitWidth="53.0" layoutX="177.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../../Desktop/card_12.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="Dc5" fitHeight="50.0" fitWidth="32.0" layoutX="223.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="Dc5" fitHeight="84.0" fitWidth="53.0" layoutX="238.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../../Desktop/card_12.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane layoutX="521.0" layoutY="6.0" prefHeight="177.0" prefWidth="196.0">
+      <Pane layoutX="486.0" layoutY="6.0" prefHeight="203.0" prefWidth="236.0">
          <children>
             <ImageView fx:id="p2img" fitHeight="84.0" fitWidth="100.0" layoutX="14.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -76,21 +77,21 @@
             <Button fx:id="btncheckp2" layoutX="69.0" layoutY="87.0" mnemonicParsing="false" onAction="#btncheckp2click" text="Check" />
             <TextField fx:id="txtamountp2" layoutX="14.0" layoutY="118.0" prefHeight="25.0" prefWidth="65.0" promptText="amount" />
             <Label layoutX="134.0" layoutY="14.0" prefHeight="17.0" prefWidth="57.0" text="Player 2" />
-            <Label fx:id="txtP2" layoutX="14.0" layoutY="147.0" prefHeight="25.0" prefWidth="163.0" />
+            <Label fx:id="txtP2" layoutX="14.0" layoutY="164.0" prefHeight="25.0" prefWidth="163.0" />
             <Label fx:id="txtcoinsp2" layoutX="134.0" layoutY="53.0" prefHeight="17.0" prefWidth="48.0" />
-            <ImageView fx:id="p2c1" fitHeight="50.0" fitWidth="32.0" layoutX="122.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="p2c1" fitHeight="63.0" fitWidth="47.0" layoutX="122.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../../Desktop/card_12.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="p2c2" fitHeight="50.0" fitWidth="32.0" layoutX="162.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="p2c2" fitHeight="63.0" fitWidth="47.0" layoutX="177.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../../Desktop/card_12.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane layoutX="521.0" layoutY="381.0" prefHeight="177.0" prefWidth="196.0">
+      <Pane layoutX="486.0" layoutY="360.0" prefHeight="203.0" prefWidth="236.0">
          <children>
             <ImageView fx:id="p4img" fitHeight="84.0" fitWidth="100.0" layoutX="14.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -101,21 +102,21 @@
             <Button fx:id="btncheckp4" layoutX="70.0" layoutY="87.0" mnemonicParsing="false" onAction="#btncheckp4click" text="Check" />
             <TextField fx:id="txtamountp4" layoutX="14.0" layoutY="118.0" prefHeight="25.0" prefWidth="65.0" promptText="amount" />
             <Label layoutX="134.0" layoutY="14.0" prefHeight="17.0" prefWidth="57.0" text="Player 4" />
-            <Label fx:id="txtP4" layoutX="14.0" layoutY="147.0" prefHeight="25.0" prefWidth="163.0" />
+            <Label fx:id="txtP4" layoutX="13.0" layoutY="164.0" prefHeight="25.0" prefWidth="163.0" />
             <Label fx:id="txtcoinsp4" layoutX="134.0" layoutY="53.0" prefHeight="17.0" prefWidth="48.0" />
-            <ImageView fx:id="p4c1" fitHeight="50.0" fitWidth="32.0" layoutX="122.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="p4c1" fitHeight="71.0" fitWidth="47.0" layoutX="122.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../../Desktop/card_12.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="p4c2" fitHeight="50.0" fitWidth="32.0" layoutX="162.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="p4c2" fitHeight="63.0" fitWidth="47.0" layoutX="177.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../../Desktop/card_12.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane layoutX="14.0" layoutY="389.0" prefHeight="177.0" prefWidth="196.0">
+      <Pane layoutX="19.0" layoutY="360.0" prefHeight="203.0" prefWidth="236.0">
          <children>
             <ImageView fx:id="p3img" fitHeight="84.0" fitWidth="100.0" layoutX="14.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -126,19 +127,31 @@
             <Button fx:id="btncheckp3" layoutX="66.0" layoutY="87.0" mnemonicParsing="false" onAction="#btncheckp3click" text="Check" />
             <TextField fx:id="txtamountp3" layoutX="14.0" layoutY="118.0" prefHeight="25.0" prefWidth="65.0" promptText="amount" />
             <Label layoutX="134.0" layoutY="14.0" prefHeight="17.0" prefWidth="57.0" text="Player 3" />
-            <Label fx:id="txtP3" layoutX="14.0" layoutY="147.0" prefHeight="25.0" prefWidth="163.0" />
+            <Label fx:id="txtP3" layoutX="9.0" layoutY="164.0" prefHeight="25.0" prefWidth="163.0" />
             <Label fx:id="txtcoinsp3" layoutX="134.0" layoutY="53.0" prefHeight="17.0" prefWidth="48.0" />
-            <ImageView fx:id="p3c1" fitHeight="50.0" fitWidth="32.0" layoutX="122.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="p3c1" fitHeight="71.0" fitWidth="47.0" layoutX="122.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../../Desktop/card_12.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="p3c2" fitHeight="50.0" fitWidth="32.0" layoutX="162.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="p3c2" fitHeight="63.0" fitWidth="53.0" layoutX="177.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../../../Desktop/card_12.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
+      <Button fx:id="btnShowRules" layoutX="320.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnShowRulesClick" prefHeight="37.0" prefWidth="86.0" text="Show Rules" textFill="#f830bc">
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant color="#bce844" />
+               </light>
+            </Lighting>
+         </effect>
+      </Button>
    </children>
 </AnchorPane>

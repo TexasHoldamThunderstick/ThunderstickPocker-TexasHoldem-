@@ -25,7 +25,7 @@ public class ThunderstickPockerServer {
 
     public static HashMap hm = new HashMap();
 
-    public static void main(String[] args) {
+    public ThunderstickPockerServer(){
 
         try {
             final int PORT = 444;
@@ -123,6 +123,8 @@ public class ThunderstickPockerServer {
             System.out.println(e);
         }
 
-    }
+ 
+    
+}
 
 }

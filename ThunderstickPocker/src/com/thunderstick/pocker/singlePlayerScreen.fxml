@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="608.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thunderstick.pocker.gui.SinglePlayerScreenController">
+   <children>
+      <Ellipse fill="#56ff1f" layoutX="359.0" layoutY="299.0" radiusX="204.0" radiusY="105.0" stroke="BLACK" strokeType="INSIDE" />
+      <Pane layoutX="201.0" layoutY="225.0" prefHeight="147.0" prefWidth="316.0">
+         <children>
+            <ImageView fx:id="deckc1" fitHeight="77.0" fitWidth="57.0" layoutX="5.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../../Desktop/card_12.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="deckc2" fitHeight="76.0" fitWidth="57.0" layoutX="73.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../../Desktop/card_12.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="deckc3" fitHeight="85.0" fitWidth="57.0" layoutX="137.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../../Desktop/card_12.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="deckc4" fitHeight="85.0" fitWidth="57.0" layoutX="199.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../../Desktop/card_12.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="deckc5" fitHeight="80.0" fitWidth="57.0" layoutX="264.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../../Desktop/card_12.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="24.0" layoutY="14.0" prefHeight="200.0" prefWidth="284.0">
+         <children>
+            <ImageView fitHeight="70.0" fitWidth="83.0" layoutX="14.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/Resources/4.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btnStart" layoutX="14.0" layoutY="79.0" mnemonicParsing="false" onAction="#btnStartclick" prefHeight="25.0" prefWidth="52.0" text="start" />
+            <Label fx:id="p1message" layoutX="26.0" layoutY="153.0" prefHeight="25.0" prefWidth="195.0" text="message" />
+            <Label fx:id="p1coins" layoutX="117.0" layoutY="38.0" prefHeight="25.0" prefWidth="52.0" text="Coins" />
+            <ImageView fx:id="p1c1" fitHeight="70.0" fitWidth="57.0" layoutX="141.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../../Desktop/card_12.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="p1c2" fitHeight="70.0" fitWidth="57.0" layoutX="206.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../../Desktop/card_12.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="p1Name" layoutX="115.0" layoutY="6.0" text="Player Name" />
+            <TextField fx:id="txtp1bet" layoutX="14.0" layoutY="113.0" prefHeight="25.0" prefWidth="67.0" promptText="enter bet" />
+            <Button fx:id="btnCheck" layoutX="71.0" layoutY="79.0" mnemonicParsing="false" onAction="#btnCheckclick" text="Check" />
+         </children>
+      </Pane>
+      <Pane layoutX="465.0" layoutY="14.0" prefHeight="200.0" prefWidth="263.0">
+         <children>
+            <ImageView fitHeight="70.0" fitWidth="83.0" layoutX="14.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/Resources/3.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="p2message" layoutX="26.0" layoutY="153.0" prefHeight="25.0" prefWidth="195.0" text="message" />
+            <Label fx:id="p2coins" layoutX="117.0" layoutY="38.0" prefHeight="25.0" prefWidth="52.0" text="Coins" />
+            <ImageView fx:id="p2c1" fitHeight="70.0" fitWidth="57.0" layoutX="127.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../../Desktop/card_12.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="p2c2" fitHeight="70.0" fitWidth="57.0" layoutX="191.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../../Desktop/card_12.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="p2Name" layoutX="143.0" layoutY="12.0" text="Player Name" />
+         </children>
+      </Pane>
+      <Pane layoutX="24.0" layoutY="383.0" prefHeight="200.0" prefWidth="255.0">
+         <children>
+            <ImageView fitHeight="70.0" fitWidth="83.0" layoutX="14.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/Resources/2.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="p3message" layoutX="26.0" layoutY="153.0" prefHeight="25.0" prefWidth="195.0" text="message" />
+            <Label fx:id="p3coins" layoutX="115.0" layoutY="38.0" prefHeight="25.0" prefWidth="52.0" text="Coins" />
+            <ImageView fx:id="p3c1" fitHeight="70.0" fitWidth="52.0" layoutX="132.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../../Desktop/card_12.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="p3c2" fitHeight="83.0" fitWidth="52.0" layoutX="191.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../../Desktop/card_12.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="p3Name" layoutX="145.0" layoutY="7.0" text="Player Name" />
+         </children>
+      </Pane>
+      <Pane layoutX="476.0" layoutY="383.0" prefHeight="200.0" prefWidth="255.0">
+         <children>
+            <ImageView fitHeight="70.0" fitWidth="83.0" layoutX="14.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/Resources/1.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="p4message" layoutX="26.0" layoutY="153.0" prefHeight="25.0" prefWidth="195.0" text="message" />
+            <Label fx:id="p4coins" layoutX="121.0" layoutY="25.0" prefHeight="25.0" prefWidth="52.0" text="Coins" />
+            <ImageView fx:id="p4c1" fitHeight="70.0" fitWidth="57.0" layoutX="127.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../../Desktop/card_12.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="p4c2" fitHeight="70.0" fitWidth="57.0" layoutX="191.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../../Desktop/card_12.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="p4Name" layoutX="142.0" layoutY="3.0" text="Player Name" />
+         </children>
+      </Pane>
+      <Button fx:id="btnShowRules" layoutX="330.0" layoutY="24.0" mnemonicParsing="false" onAction="#btnShowRulesClick" prefHeight="37.0" prefWidth="86.0" text="Show Rules" textFill="#f830bc">
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant color="#bce844" />
+               </light>
+            </Lighting>
+         </effect>
+      </Button>
+   </children>
+</AnchorPane>

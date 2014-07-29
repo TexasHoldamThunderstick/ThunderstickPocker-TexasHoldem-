@@ -28,6 +28,9 @@ public class SingleplayerController implements Initializable {
 
     @FXML
     Button btnplay;
+    @FXML
+    Button btnClose;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -45,6 +48,16 @@ public class SingleplayerController implements Initializable {
     
     public void btnplayclick(ActionEvent e) throws IOException{
         startGameScreen();
+        ((Node) e.getTarget()).getScene().getWindow().hide();
+    }
+    
+    public void btnCloseclick(ActionEvent e) throws IOException{
+        AnchorPane pane = (AnchorPane) FXMLLoader.load(HomeController.class.getResource("/com/thunderstick/pocker/gui/Home.fxml"));
+        Scene scene = new Scene(pane);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Home");
+        stage.show();
         ((Node) e.getTarget()).getScene().getWindow().hide();
     }
     
